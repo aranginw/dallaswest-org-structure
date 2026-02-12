@@ -428,6 +428,23 @@ for(let i=0;i<8;i++){
   }
   rippleRings.push(ringsForNNC);
 }
+
+// Downward radiant wave bands (slide 22)
+const waveBands=[];
+const waveBandCount=6;
+for(let i=0;i<waveBandCount;i++){
+  const geo=new THREE.PlaneGeometry(10,0.6);
+  const mat=new THREE.MeshBasicMaterial({
+    color:new THREE.Color().setHSL(0.08+i*0.02,0.8,0.55), // warm gold-orange gradient
+    transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false
+  });
+  const band=new THREE.Mesh(geo,mat);
+  band.position.set(0,0,-0.1);
+  band.userData.targetOpacity=0;band.userData.bandIdx=i;
+  scene.add(band);
+  waveBands.push(band);
+}
+
 let slideStartTime=0;
 const clock=new THREE.Clock();
 let elapsed=0;
@@ -482,8 +499,9 @@ let slide=1;
 function hideAll(){
   allNodes.forEach(n=>{n.userData.targetScale=0;n.userData.targetOpacity=0;});
   allDotsList.forEach(d=>{d.userData.targetScale=0;d.userData.targetOpacity=0;d.userData.excitement=false;d.userData.bounce=false;});
-  allConns.forEach(c=>{c.userData.targetOpacity=0;c.userData.pulse=false;c.userData.pulseSpeed=0;c.userData.pulseIdx=0;c.userData.cascade=false;});
+  allConns.forEach(c=>{c.userData.targetOpacity=0;c.userData.pulse=false;c.userData.pulseSpeed=0;c.userData.pulseIdx=0;c.userData.cascade=false;c.userData.sparkle=false;});
   rippleRings.forEach(rr=>rr.forEach(r=>{r.userData.targetOpacity=0;r.scale.set(0.01,0.01,1);}));
+  waveBands.forEach(b=>{b.userData.targetOpacity=0;b.material.opacity=0;});
   walls.forEach(w=>w.userData.targetOpacity=0);
   splitWall.userData.targetOpacity=0;
   wallLeftVP.userData.targetOpacity=0;wallRightVP.userData.targetOpacity=0;
@@ -878,23 +896,15 @@ function setSlide(s){
     for(let i=0;i<8;i++){
       const nx=-3.5+i*1;
       const isKey=keyNNCs.includes(i);
+      // NNC dots: static, no bounce — ripple rings do the talking
       showDot(nncDots[i],nx,nncY,1);
-      nncDots[i].userData.excitement=true;
-      nncDots[i].userData.exciteIdx=i;
-      nncDots[i].userData.exciteKey=isKey;
-      nncDots[i].userData.bounce=true;
-      nncDots[i].userData.bounceAmp=isKey?0.06:0.035;
-      nncDots[i].userData.bounceSpeed=isKey?4:2.5;
-      nncDots[i].userData.cascadeDelay=cascadeDelay[i];
 
       showNode(nnNodes[i],nx,2.5,0.95);
       nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
 
-      nncNNConns[i].userData.targetOpacity=0.6;
-      nncNNConns[i].userData.cascade=true;
-      nncNNConns[i].userData.cascadeDelay=cascadeDelay[i];
-      nncNNConns[i].userData.pulseSpeed=isKey?5:3;
-      nncNNConns[i].userData.pulseIdx=i;
+      nncNNConns[i].userData.targetOpacity=1.0;
+      nncNNConns[i].userData.sparkle=true;
+      nncNNConns[i].userData.sparkleIdx=i;
 
       // Ripple rings positioned at NNC
       rippleRings[i].forEach(r=>{r.position.set(nx,nncY,0);r.userData.targetOpacity=0.6;});
@@ -907,15 +917,13 @@ function setSlide(s){
         memberDots[i][m].userData.exciteMember=m;
         memberDots[i][m].userData.exciteKey=isKey;
         memberDots[i][m].userData.bounce=true;
-        memberDots[i][m].userData.bounceAmp=isKey?0.04:0.025;
+        memberDots[i][m].userData.bounceAmp=isKey?0.02:0.012;
         memberDots[i][m].userData.bounceSpeed=isKey?5:3;
         memberDots[i][m].userData.cascadeDelay=cascadeDelay[i]+0.4+m*0.15;
 
-        memberConns[i][m].userData.targetOpacity=0.6;
-        memberConns[i][m].userData.cascade=true;
-        memberConns[i][m].userData.cascadeDelay=cascadeDelay[i]+0.3;
-        memberConns[i][m].userData.pulseSpeed=isKey?5.5:3;
-        memberConns[i][m].userData.pulseIdx=i*5+m;
+        memberConns[i][m].userData.targetOpacity=1.0;
+        memberConns[i][m].userData.sparkle=true;
+        memberConns[i][m].userData.sparkleIdx=i*5+m;
       }
     }
     nncRect.userData.targetOpacity=0.03;nncBorder.userData.targetOpacity=0.2;nncFlatLabel.userData.targetOpacity=0.4;
@@ -965,7 +973,7 @@ function animate(){
         // Bounce vertically
         d.position.y+=Math.sin(elapsed*spd+(d.userData.exciteIdx||0)*1.2+(d.userData.exciteMember||0)*0.8)*amp;
         // Scale pulse
-        const scalePulse=1+0.12*Math.sin(elapsed*spd*0.8+(d.userData.exciteMember||0)*0.5);
+        const scalePulse=1+0.06*Math.sin(elapsed*spd*0.8+(d.userData.exciteMember||0)*0.5);
         d.scale.set(scalePulse*ts,scalePulse*ts,scalePulse*ts);
         // Color shift: warm up from base to gold/orange
         if(d.userData.mat){
@@ -983,7 +991,13 @@ function animate(){
   });
   allConns.forEach(c=>{
     let target=c.userData.targetOpacity;
-    if(c.userData.cascade){
+    if(c.userData.sparkle){
+      // Sparkle: bright base with occasional extra-bright flashes
+      const t=elapsed*6+(c.userData.sparkleIdx||0)*2.7;
+      const flash=Math.pow(Math.max(0,Math.sin(t)*Math.sin(t*1.7)*Math.sin(t*0.3)),3);
+      target=target*(0.7+0.3*flash);
+      c.material.color.setHSL(0.1,0.5+flash*0.4,0.6+flash*0.35);
+    } else if(c.userData.cascade){
       // Cascade: fade in after delay, then pulse hard
       const age=elapsed-slideStartTime-(c.userData.cascadeDelay||0);
       if(age<0){target=0.02;}
@@ -1024,6 +1038,31 @@ function animate(){
         ring.material.opacity*=0.9;
       }
     });
+  });
+
+  // Downward radiant wave: bands sweep from NNC Forum down past members
+  const waveTop=4.2; // just above NNC Forum
+  const waveBot=0.3; // past members
+  const waveRange=waveTop-waveBot;
+  const waveCycle=4.0; // seconds for full sweep
+  waveBands.forEach((band,i)=>{
+    if(band.userData.targetOpacity>0){
+      const age=elapsed-slideStartTime;
+      const stagger=i*0.35; // stagger each band
+      const phase=((age-stagger)%waveCycle)/waveCycle;
+      if(phase<0){band.material.opacity=0;return;}
+      const yPos=waveTop-phase*waveRange;
+      band.position.y=yPos;
+      // Fade in at top, bright in middle, fade out at bottom
+      const fadeIn=Math.min(phase*5,1);
+      const fadeOut=Math.max(0,1-(phase-0.7)/0.3);
+      band.material.opacity=band.userData.targetOpacity*fadeIn*fadeOut;
+      // Color shifts warmer as it descends
+      const hue=0.1-phase*0.05; // orange to warm red
+      band.material.color.setHSL(hue,0.7,0.5+phase*0.1);
+    } else {
+      band.material.opacity*=0.9;
+    }
   });
   splitWall.material.opacity+=(splitWall.userData.targetOpacity-splitWall.material.opacity)*s;
   wallLeftVP.material.opacity+=(wallLeftVP.userData.targetOpacity-wallLeftVP.material.opacity)*s;
