@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organizational Restructure</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0b0e17; font-family: 'DM Sans', sans-serif; overflow: hidden; color: #e0e0e0; }
+
+  #header {
+    position: absolute; top: 0; left: 0; right: 0;
+    text-align: center; padding: 18px 20px 6px; z-index: 10; pointer-events: none;
+  }
+  #header h1 {
+    font-family: 'Playfair Display', serif; font-size: 24px;
+    letter-spacing: 1px; margin-bottom: 4px; transition: color 0.8s ease;
+  }
+  #header .subtitle {
+    font-size: 11px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  #controls {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; align-items: center; gap: 10px;
+  }
+  .ctrl-btn {
+    background: linear-gradient(135deg, #1a2a44, #243656);
+    border: 1px solid rgba(255,255,255,0.12); color: #fff;
+    padding: 9px 22px; border-radius: 40px; font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
+  }
+  .ctrl-btn:hover { background: linear-gradient(135deg, #243656, #2e4a72); }
+  .ctrl-btn:disabled { opacity: 0.3; cursor: default; }
+  #phase-label { font-size: 10px; opacity: 0.4; letter-spacing: 1px; text-transform: uppercase; min-width: 50px; text-align: center; }
+
+  #callouts {
+    position: absolute; right: 16px; top: 80px;
+    z-index: 10; max-width: 230px; pointer-events: none;
+    max-height: calc(100vh - 160px); overflow-y: auto;
+  }
+  .callout {
+    background: rgba(15,20,35,0.85); border-left: 3px solid;
+    padding: 9px 11px; margin-bottom: 7px; border-radius: 0 8px 8px 0;
+    font-size: 11px; line-height: 1.4; opacity: 0; transform: translateX(20px);
+    transition: all 0.6s ease;
+    max-height: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; overflow: hidden;
+  }
+  .callout.visible { opacity: 1; transform: translateX(0); max-height: 200px; padding: 9px 11px; margin-bottom: 7px; }
+  .c-red { border-color: #e8927c; }
+  .c-amber { border-color: #e8c97c; }
+  .c-blue { border-color: #7cb8e8; }
+  .c-green { border-color: #7ce8b3; }
+  .c-purple { border-color: #c8a2f0; }
+  .callout strong { display: block; margin-bottom: 2px; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+  .c-red strong { color: #e8927c; }
+  .c-amber strong { color: #e8c97c; }
+  .c-blue strong { color: #7cb8e8; }
+  .c-green strong { color: #7ce8b3; }
+  .c-purple strong { color: #c8a2f0; }
+
+  #legend {
+    position: absolute; left: 16px; bottom: 56px; z-index: 10; pointer-events: none;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; font-size: 9px; opacity: 0.5; }
+  .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+  canvas { display: block; cursor: grab; }
+  canvas:active { cursor: grabbing; }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1 id="title" style="color:#e8927c">Full Chapter Structure</h1>
+  <div class="subtitle" id="subtitle">Before the Split</div>
+</div>
+
+<div id="callouts">
+  <div class="callout c-red visible" data-slide="1"><strong>⚠ Silos</strong>NNs are isolated under their Area VP — minimal cross-communication</div>
+  <div class="callout c-red visible" data-slide="1"><strong>⚠ Too Many Layers</strong>Many layers between members and departments made it hard to know what was going on or influence change</div>
+  <div class="callout c-red visible" data-slide="1"><strong>⚠ MGA Fragmentation</strong>Members scattered across silos can't influence leadership</div>
+
+  <div class="callout c-amber" data-slide="2"><strong>✦ The Split</strong>Chapter divides — West &amp; South become "West", North &amp; East become "East"</div>
+  <div class="callout c-amber" data-slide="2"><strong>✦ Full Duplication</strong>Each side gets its own President, Shura, Exec Team, and all departments. Areas where teams overlap and cooperation protocols are being assessed</div>
+
+  <div class="callout c-amber" data-slide="3"><strong>✦ Our Chapter</strong>Focusing on West — our 8 NNs, our leadership, our opportunity to restructure</div>
+
+  <div class="callout c-blue" data-slide="4"><strong>✦ Flatten the Layers</strong>VP West + VP South merge into one Deputy — now just one leader overseeing all 8 NNs directly</div>
+  <div class="callout c-blue" data-slide="4"><strong>✦ No More Silos</strong>The regional walls are gone. One Deputy, empowered to make decisions on behalf of the President when the President is not present or unable to attend</div>
+
+  <div class="callout c-blue" data-slide="5"><strong>✦ Empower the NNC</strong>Each NN Coordinator now has a visible, prominent role — they represent all the members of their NeighborNet</div>
+
+  <div class="callout c-green" data-slide="6"><strong>✦ The NNC Forum</strong>NNCs form their own circle — no longer segregated, they meet frequently to discuss on-the-ground issues</div>
+  <div class="callout c-green" data-slide="6"><strong>✦ Multiple Access Points</strong>MGAs can now voice their opinions through their NNC, the Deputy (a decision maker), the Sec. General, or the President directly</div>
+
+  <div class="callout c-green" data-slide="7"><strong>✦ Departments Within Reach</strong>Department leads are encouraged to attend the NNC Forum and share projects, issues, and needs directly — no more layers of separation. These departments are manned by our members and MGAs anyway</div>
+
+  <div class="callout c-green" data-slide="8"><strong>✦ Secretary General</strong>The Sec. General coordinates the department level — overseeing operations, identifying where assistance is needed and where opportunities are present</div>
+
+  <div class="callout c-green" data-slide="9"><strong>✦ Strategic Leadership</strong>President, Shura, Deputy, Sec. General, and MGA Body make the strategic decisions for our Chapter — deciding what we focus on, what we don't, and what Vision 2030 looks like for us</div>
+
+  <div class="callout c-green" data-slide="10"><strong>✦ Departments</strong>Carry out the work and program of our Chapter. They consist of a subset of our NN members — our NN members are the workforce behind these departments, teams, and projects</div>
+  <div class="callout c-green" data-slide="10"><strong>✦ Autonomous Execution</strong>Departments make their own tactical decisions and form internal strategy aligned with the overall Chapter strategy</div>
+  <div class="callout c-green" data-slide="10"><strong>✦ The Secretary General</strong>Focused on making sure departments are healthy and providing assistance when needed. Keen on identifying opportunities where NN members are needed, and working with the Deputy to find talent</div>
+
+  <div class="callout c-green" data-slide="11"><strong>✦ The Deputy</strong>In charge of overseeing NNs along with the President. Empowered with the decision-making abilities of the President in their absence. Works with the President and Sec. General to identify talent and link it with the work we're doing via Departments</div>
+  <div class="callout c-green" data-slide="11"><strong>✦ NN Coordinators (NNCs)</strong>Since all of our members and MGAs belong to an NN, these people together represent everyone — the entire on-the-ground workforce. By meeting frequently, the President and Deputy stay aware of the health, issues, and potential of the entire group</div>
+
+  <div class="callout c-green" data-slide="12"><strong>✦ NeighborNets (NNs)</strong>Our basic organizing unit, and also a way to attract new people. This is the gateway into the organization</div>
+
+  <div class="callout c-green" data-slide="13"><strong>✦ NN Members</strong>The actual people on the ground. This includes MGAs as well as non-MGAs who are very dedicated</div>
+
+  <div class="callout c-green" data-slide="14"><strong>✦ The Complete Structure</strong>Everyone is connected. Leadership is close to the action. Talent flows from NNs to departments. The structure serves the mission</div>
+
+  <div class="callout c-purple" data-slide="15"><strong>📋 Weekly NNC Forum Call</strong>The Deputy opens the weekly call. The President joins when available. All 8 NNCs are present — this is the pulse of the Chapter</div>
+  <div class="callout c-purple" data-slide="15"><strong>💡 Not Top-Down</strong>This isn't leadership giving orders. The NNCs are tactical decision-makers here — they know what's happening on the ground</div>
+
+  <div class="callout c-purple" data-slide="16"><strong>📋 This Week's Priority</strong>The Sec. General flags the upcoming fundraiser. Three departments need to coordinate with the NNCs: Fundraising, Marketing, and Oak Cliff</div>
+
+  <div class="callout c-purple" data-slide="17"><strong>📋 Open Forum</strong>Department leads join the NNC Forum directly. No intermediaries, no telephone game — they bring their projects, issues, and needs straight to the people who will execute</div>
+
+  <div class="callout c-purple" data-slide="18"><strong>💬 Fundraising Lead</strong>"For this campaign, we need every NN to raise $10K. Here's the plan and the materials we have ready."</div>
+
+  <div class="callout c-purple" data-slide="19"><strong>💬 NNC3 (NN3)</strong>"We can do more. Our community is fired up — put us down for $15K."</div>
+  <div class="callout c-purple" data-slide="19"><strong>💬 NNC7 (NN7)</strong>"We're going to have a hard time with that. Maybe we can do $3K. But if you need A/V help, we have people for that."</div>
+  <div class="callout c-purple" data-slide="19"><strong>💡 This Is the Difference</strong>NNCs aren't just taking orders — they're owning the outcomes and committing based on what they know about their people</div>
+
+  <div class="callout c-purple" data-slide="20"><strong>💬 Marketing Lead</strong>"We need help running online ads for the campaign. Does anyone have someone with digital marketing experience?"</div>
+
+  <div class="callout c-purple" data-slide="21"><strong>💬 NNC6 (NN6)</strong>"I have just the person — he's been wanting to contribute. I'll connect you this week."</div>
+  <div class="callout c-purple" data-slide="21"><strong>💡 Talent Pipeline in Action</strong>This is how talent surfaces — not through top-down assignments, but through NNCs who know their people and can match skills to needs in real time</div>
+
+  <div class="callout c-purple" data-slide="22"><strong>📋 After the Forum</strong>Every NNC goes back to their NeighborNet. NNC3, NNC6, and NNC7 have specific action items — but all 8 NNCs were part of the plan and carry that energy back</div>
+  <div class="callout c-purple" data-slide="22"><strong>💡 Everyone Is Involved</strong>Even NNCs who didn't speak up were there. They heard the strategy, they know the goals, and now they're mobilizing their people. The whole Chapter moves together</div>
+</div>
+
+<div id="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#FFD700"></div> President</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#9B7FD4"></div> Shura</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#5B9BD5"></div> Executive / Deputy</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3CC8A0"></div> Area VPs</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4CAF7A"></div> NeighborNet (NN)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f0c040"></div> NNC (Coordinator)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#a8d5a2"></div> Members</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#E8935D"></div> Departments</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#C47A5D"></div> Projects</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#7BAFD4"></div> MGA Body</div>
+</div>
+
+<div id="controls">
+  <button class="ctrl-btn" id="prevBtn" disabled>← Back</button>
+  <span id="phase-label">1 / 9</span>
+  <button class="ctrl-btn" id="nextBtn">Next →</button>
+  <button class="ctrl-btn" id="resetBtn" style="margin-left:8px;font-size:10px;padding:7px 14px;">Reset View</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const TOTAL_SLIDES = 22;
+const scene = new THREE.Scene();
+const W = window.innerWidth, H = window.innerHeight;
+const camera = new THREE.PerspectiveCamera(50, W/H, 0.1, 200);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(W,H); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+document.body.appendChild(renderer.domElement);
+
+// Camera
+let camZ=28, camX=0, camY=3;
+let tCamX=0, tCamY=3, tCamZ=28; // targets for animated zoom
+let isDrag=false, dSX=0, dSY=0, cSX=0, cSY=0, manualCam=false;
+renderer.domElement.addEventListener('wheel', e=>{e.preventDefault();camZ=Math.max(6,Math.min(50,camZ+e.deltaY*0.02));tCamZ=camZ;manualCam=true;},{passive:false});
+renderer.domElement.addEventListener('mousedown', e=>{if(e.button===0){isDrag=true;dSX=e.clientX;dSY=e.clientY;cSX=camX;cSY=camY;}});
+window.addEventListener('mousemove', e=>{if(!isDrag)return;manualCam=true;const s=camZ*0.0015;camX=cSX-(e.clientX-dSX)*s;camY=cSY+(e.clientY-dSY)*s;tCamX=camX;tCamY=camY;});
+window.addEventListener('mouseup', ()=>isDrag=false);
+let lastTD=0;
+renderer.domElement.addEventListener('touchstart', e=>{if(e.touches.length===1){isDrag=true;dSX=e.touches[0].clientX;dSY=e.touches[0].clientY;cSX=camX;cSY=camY;}if(e.touches.length===2)lastTD=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);},{passive:false});
+renderer.domElement.addEventListener('touchmove', e=>{e.preventDefault();if(e.touches.length===1&&isDrag){manualCam=true;const s=camZ*0.0015;camX=cSX-(e.touches[0].clientX-dSX)*s;camY=cSY+(e.touches[0].clientY-dSY)*s;tCamX=camX;tCamY=camY;}if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);camZ=Math.max(6,Math.min(50,camZ-(d-lastTD)*0.05));tCamZ=camZ;lastTD=d;manualCam=true;}},{passive:false});
+renderer.domElement.addEventListener('touchend', ()=>isDrag=false);
+
+// Helpers
+function makeTC(t,fs,c){const cv=document.createElement('canvas'),ctx=cv.getContext('2d');cv.width=512;cv.height=96;ctx.font=`bold ${fs}px 'Segoe UI',sans-serif`;ctx.fillStyle=c;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,256,48);return cv;}
+
+function N(label,color,size,x,y){
+  const g=new THREE.Group();
+  const mat=new THREE.MeshBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:0.9});
+  g.add(new THREE.Mesh(new THREE.CircleGeometry(size,48),mat));
+  const lt=new THREE.CanvasTexture(makeTC(label,26,'#ffffff'));
+  const lm=new THREE.SpriteMaterial({map:lt,transparent:true});
+  const ls=new THREE.Sprite(lm);ls.scale.set(3,0.56,1);ls.position.y=-(size+0.28);
+  g.add(ls);g.position.set(x,y,0);
+  g.userData={mat,targetPos:new THREE.Vector3(x,y,0),targetScale:1,targetOpacity:0.9,label:ls};
+  scene.add(g);return g;
+}
+
+function Dot(color,size,x,y){
+  const mat=new THREE.MeshBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:0.8});
+  const m=new THREE.Mesh(new THREE.CircleGeometry(size,24),mat);
+  m.position.set(x,y,0);m.userData={mat,targetPos:new THREE.Vector3(x,y,0),targetScale:1,targetOpacity:0.8};
+  scene.add(m);return m;
+}
+
+function Conn(a,b,color,op){
+  const mat=new THREE.LineBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:op});
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));
+  const l=new THREE.Line(geo,mat);l.userData={a,b,targetOpacity:op};scene.add(l);return l;
+}
+
+function Wall(x,y,h,color){
+  const mat=new THREE.MeshBasicMaterial({color:new THREE.Color(color||0xe8927c),transparent:true,opacity:0.3,side:THREE.DoubleSide});
+  const m=new THREE.Mesh(new THREE.PlaneGeometry(0.06,h),mat);m.position.set(x,y,0);m.userData={targetOpacity:0.3};scene.add(m);return m;
+}
+
+function Ring(cx,cy,r1,r2,color){
+  const mat=new THREE.MeshBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:0,side:THREE.DoubleSide});
+  const m=new THREE.Mesh(new THREE.RingGeometry(r1,r2,64),mat);m.position.set(cx,cy,-0.1);m.userData={targetOpacity:0};scene.add(m);return m;
+}
+function Disk(cx,cy,r,color){
+  const mat=new THREE.MeshBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:0});
+  const m=new THREE.Mesh(new THREE.CircleGeometry(r,64),mat);m.position.set(cx,cy,-0.15);m.userData={targetOpacity:0};scene.add(m);return m;
+}
+function SLabel(cx,cy,text,color){
+  const lm=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(makeTC(text,28,color)),transparent:true,opacity:0});
+  const ls=new THREE.Sprite(lm);ls.scale.set(2.6,0.48,1);ls.position.set(cx,cy,0);ls.userData={targetOpacity:0};scene.add(ls);return ls;
+}
+
+// ═══ CONSTANTS ═══
+const deptY1=10.2, deptY2=9, deptXs=[-4.4,-2.2,0,2.2,4.4];
+const LX=-6, RX=6;
+const FCX=0, FCY=-1.5; // Forum center for final slides
+const nnRadius=2.7, nncRadius=3.6, deptRadius=5.2;
+
+function arcPos(radius,i,total){const a=Math.PI*0.1+Math.PI*0.8*(i/(total-1));return[Math.cos(a)*radius+FCX,Math.sin(a)*radius+FCY];}
+function deptArcPos(i,total){const a=Math.PI*0.05+Math.PI*0.9*(i/(total-1));return[Math.cos(a)*deptRadius+FCX,Math.sin(a)*deptRadius+FCY];}
+
+// ═══ DEPARTMENTS ═══
+const dN1=['CSJ','Finance','Fundraising','Marketing','Embrace'];
+const dN2=['R&D','Dawah','Tarbiyah','Oak Cliff','ClickSend'];
+const dC1='#E8935D', dC2p='#C47A5D';
+const deptsR1=dN1.map((n,i)=>N(n,dC1,0.22,deptXs[i],deptY1));
+const deptsR2=dN2.map((n,i)=>N(n,i>=3?dC2p:dC1,0.22,deptXs[i],deptY2));
+const allDepts=[...deptsR1,...deptsR2];
+const rndTexOld=new THREE.CanvasTexture(makeTC('R&D',26,'#ffffff'));
+const rndTexNew=new THREE.CanvasTexture(makeTC('Org Relations',26,'#ffffff'));
+
+// Duplicates for Phase 2
+const deptsR1_B=dN1.map((n,i)=>N(n,dC1,0.22,0,0));
+const deptsR2_B=dN2.map((n,i)=>N(n,i>=3?dC2p:dC1,0.22,0,0));
+const allDeptsB=[...deptsR1_B,...deptsR2_B];
+allDeptsB.forEach(d=>{d.scale.set(0,0,0);d.userData.targetScale=0;});
+
+// ═══ LEADERSHIP ═══
+const president=N('President','#FFD700',0.4,0,7.5);
+const shura=N('Shura','#9B7FD4',0.32,-2.5,6.3);
+const execTeam=N('Exec Team','#5B9BD5',0.32,2.5,6.3);
+const deputy=N('Deputy','#5B9BD5',0.32,0,0);deputy.scale.set(0,0,0);deputy.userData.targetScale=0;
+const secGen=N('Sec. General','#5B9BD5',0.3,0,0);secGen.scale.set(0,0,0);secGen.userData.targetScale=0;
+
+const president_B=N('President','#FFD700',0.4,0,0);president_B.scale.set(0,0,0);president_B.userData.targetScale=0;
+const shura_B=N('Shura','#9B7FD4',0.32,0,0);shura_B.scale.set(0,0,0);shura_B.userData.targetScale=0;
+const execTeam_B=N('Exec Team','#5B9BD5',0.32,0,0);execTeam_B.scale.set(0,0,0);execTeam_B.userData.targetScale=0;
+
+// ═══ VPs ═══
+const vpW=N('VP West','#3CC8A0',0.26,-6.5,4.8);
+const vpS=N('VP South','#3CC8A0',0.26,-2.2,4.8);
+const vpN=N('VP North','#3CC8A0',0.26,2.2,4.8);
+const vpE=N('VP East','#3CC8A0',0.26,6.5,4.8);
+
+// ═══ 18 NNs ═══
+const nnOldPos=[], nnNodes=[];
+[-8,-7.1,-6.2,-5.3].forEach((x,i)=>{nnNodes.push(N('NN '+(i+1),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
+[-3.5,-2.6,-1.7,-0.8].forEach((x,i)=>{nnNodes.push(N('NN '+(i+5),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
+[0.8,1.7,2.6,3.5,4.4].forEach((x,i)=>{nnNodes.push(N('NN '+(i+9),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
+[5.3,6.2,7.1,8,8.9].forEach((x,i)=>{nnNodes.push(N('NN '+(i+14),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
+
+const nnTextures=[];for(let i=0;i<18;i++)nnTextures.push(new THREE.CanvasTexture(makeTC('NN '+(i+1),26,'#ffffff')));
+
+// ═══ NNC DOTS ═══
+const nncDots=[];
+for(let i=0;i<18;i++){const d=Dot('#f0c040',0.1,nnOldPos[i][0],nnOldPos[i][1]);d.scale.set(0,0,0);d.userData.targetScale=0;d.userData.targetOpacity=0;nncDots.push(d);}
+
+// ═══ MEMBERS ═══
+const memberDots=[], memberConns=[];
+for(let n=0;n<18;n++){
+  const cx=nnOldPos[n][0],cy=nnOldPos[n][1],dots=[],conns=[];
+  for(let m=0;m<5;m++){const dot=Dot('#a8d5a2',0.08,cx+(m-2)*0.22,cy-0.65);dots.push(dot);conns.push(Conn(nnNodes[n],dot,'#6aaa6a',0.15));}
+  memberDots.push(dots);memberConns.push(conns);
+}
+
+// ═══ MGA ═══
+const mga=N('MGA Body','#7BAFD4',0.28,0,1.5);
+
+// ═══ WALLS ═══
+const walls=[Wall(-4.35,3.6,3.5),Wall(-0.05,3.6,3.5),Wall(4.85,3.6,3.5)];
+const splitWall=Wall(0,5.5,12,0xe8c97c);splitWall.material.opacity=0;splitWall.userData.targetOpacity=0;
+// VP region dividers for split sides
+const wallLeftVP=Wall(LX,4,3,0xe8927c);wallLeftVP.material.opacity=0;wallLeftVP.userData.targetOpacity=0;
+const wallRightVP=Wall(RX,4,3,0xe8927c);wallRightVP.material.opacity=0;wallRightVP.userData.targetOpacity=0;
+
+// ═══ RINGS (orbit version) ═══
+const nncForumRing=Ring(FCX,FCY,nncRadius-0.05,nncRadius+0.05,'#f0c040');
+const nncForumDisk=Disk(FCX,FCY,nncRadius-0.05,'#f0c040');
+const nncForumLabel=SLabel(FCX,FCY+nncRadius+0.4,'NNC FORUM','#f0c040');
+const nnRing=Ring(FCX,FCY,nnRadius-0.04,nnRadius+0.04,'#4CAF7A');
+const deptRing=Ring(FCX,FCY,deptRadius-0.04,deptRadius+0.04,'#E8935D');
+
+// ═══ FLAT RECTANGLES (sandwich version) ═══
+// NNC Forum rect
+const nncRectW=9, nncRectH=1.2;
+const nncRectMat=new THREE.MeshBasicMaterial({color:new THREE.Color('#f0c040'),transparent:true,opacity:0,side:THREE.DoubleSide});
+const nncRect=new THREE.Mesh(new THREE.PlaneGeometry(nncRectW,nncRectH),nncRectMat);
+nncRect.position.set(0,3.85,-0.15);nncRect.userData={targetOpacity:0};scene.add(nncRect);
+
+// NNC Forum rect border
+const nncBorderMat=new THREE.LineBasicMaterial({color:new THREE.Color('#f0c040'),transparent:true,opacity:0});
+const bHW=nncRectW/2, bHH=nncRectH/2;
+const nncBorderGeo=new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(-bHW,-bHH,0),new THREE.Vector3(bHW,-bHH,0),
+  new THREE.Vector3(bHW,bHH,0),new THREE.Vector3(-bHW,bHH,0),
+  new THREE.Vector3(-bHW,-bHH,0)
+]);
+const nncBorder=new THREE.LineLoop(nncBorderGeo,nncBorderMat);
+nncBorder.position.set(0,3.85,-0.1);nncBorder.userData={targetOpacity:0};scene.add(nncBorder);
+
+// NNC Forum flat label
+const nncFlatLabel=SLabel(-bHW+1.2,3.85+bHH-0.15,'NNC FORUM','#f0c040');
+nncFlatLabel.scale.set(1.8,0.36,1);
+
+// MGA Body vertical rect (left side, spanning all levels)
+const mgaRectW=1.4, mgaRectH=6.5;
+const mgaRectMat=new THREE.MeshBasicMaterial({color:new THREE.Color('#7BAFD4'),transparent:true,opacity:0,side:THREE.DoubleSide});
+const mgaRectMesh=new THREE.Mesh(new THREE.PlaneGeometry(mgaRectW,mgaRectH),mgaRectMat);
+const mgaRectX=-6.2, mgaRectY=4.5;
+mgaRectMesh.position.set(mgaRectX,mgaRectY,-0.15);mgaRectMesh.userData={targetOpacity:0};scene.add(mgaRectMesh);
+
+const mgaBorderMat=new THREE.LineBasicMaterial({color:new THREE.Color('#7BAFD4'),transparent:true,opacity:0});
+const mHW=mgaRectW/2, mHH=mgaRectH/2;
+const mgaBorderGeo=new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(-mHW,-mHH,0),new THREE.Vector3(mHW,-mHH,0),
+  new THREE.Vector3(mHW,mHH,0),new THREE.Vector3(-mHW,mHH,0),
+  new THREE.Vector3(-mHW,-mHH,0)
+]);
+const mgaBorderLine=new THREE.LineLoop(mgaBorderGeo,mgaBorderMat);
+mgaBorderLine.position.set(mgaRectX,mgaRectY,-0.1);mgaBorderLine.userData={targetOpacity:0};scene.add(mgaBorderLine);
+
+// MGA Body vertical label (large, rotated text)
+const mgaLabelCanvas=document.createElement('canvas');
+mgaLabelCanvas.width=512;mgaLabelCanvas.height=128;
+const mgaLCtx=mgaLabelCanvas.getContext('2d');
+mgaLCtx.clearRect(0,0,512,128);
+mgaLCtx.font='bold 72px "DM Sans",sans-serif';
+mgaLCtx.fillStyle='#7BAFD4';
+mgaLCtx.textAlign='center';mgaLCtx.textBaseline='middle';
+mgaLCtx.fillText('MGA BODY',256,64);
+const mgaLabelTex=new THREE.CanvasTexture(mgaLabelCanvas);
+const mgaFlatLabel=new THREE.Mesh(
+  new THREE.PlaneGeometry(5,1.2),
+  new THREE.MeshBasicMaterial({map:mgaLabelTex,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false})
+);
+mgaFlatLabel.rotation.z=Math.PI/2; // rotate 90° to be vertical
+mgaFlatLabel.position.set(mgaRectX,mgaRectY,-0.05);
+mgaFlatLabel.userData={targetOpacity:0};
+scene.add(mgaFlatLabel);
+const mgaFlatLabel2={material:{opacity:0},userData:{targetOpacity:0}}; // dummy to keep references working
+
+// ═══ CONNECTIONS ═══
+const allConns=[];
+
+const p1Conns=[
+  Conn(president,shura,'#FFD700',0.18),Conn(president,execTeam,'#FFD700',0.18),
+  Conn(shura,deptsR1[0],'#9B7FD4',0.08),Conn(shura,deptsR2[1],'#9B7FD4',0.08),
+  Conn(shura,deptsR2[2],'#9B7FD4',0.08),Conn(shura,deptsR2[0],'#9B7FD4',0.08),
+  Conn(shura,deptsR2[4],'#9B7FD4',0.06),
+  Conn(execTeam,deptsR1[1],'#5B9BD5',0.08),Conn(execTeam,deptsR1[3],'#5B9BD5',0.08),
+  Conn(execTeam,deptsR1[2],'#5B9BD5',0.08),Conn(execTeam,deptsR1[4],'#5B9BD5',0.08),
+  Conn(execTeam,deptsR2[3],'#5B9BD5',0.06),
+  Conn(shura,vpW,'#9B7FD4',0.12),Conn(shura,vpS,'#9B7FD4',0.12),
+  Conn(execTeam,vpN,'#5B9BD5',0.12),Conn(execTeam,vpE,'#5B9BD5',0.12),
+  ...nnNodes.slice(0,4).map(nn=>Conn(vpW,nn,'#3CC8A0',0.18)),
+  ...nnNodes.slice(4,8).map(nn=>Conn(vpS,nn,'#3CC8A0',0.18)),
+  ...nnNodes.slice(8,13).map(nn=>Conn(vpN,nn,'#3CC8A0',0.18)),
+  ...nnNodes.slice(13,18).map(nn=>Conn(vpE,nn,'#3CC8A0',0.18)),
+  Conn(mga,deptsR1[0],'#7BAFD4',0.05),Conn(mga,deptsR2[1],'#7BAFD4',0.05),Conn(mga,deptsR1[2],'#7BAFD4',0.05),
+];
+p1Conns.forEach(c=>{c.userData.phase=1;allConns.push(c);});
+
+// Deputy-to-NN connections (slide 4+)
+const deputyNNConns=[];
+for(let i=0;i<8;i++){const c=Conn(deputy,nnNodes[i],'#5B9BD5',0.16);c.userData.targetOpacity=0;c.material.opacity=0;deputyNNConns.push(c);allConns.push(c);}
+
+// NNC-to-NN and NNC-to-Deputy connections
+const nncNNConns=[], nncDepConns=[];
+for(let i=0;i<8;i++){
+  const c1=Conn(nncDots[i],nnNodes[i],'#f0c040',0.15);c1.userData.targetOpacity=0;c1.material.opacity=0;nncNNConns.push(c1);allConns.push(c1);
+  const c2=Conn(nncDots[i],deputy,'#f0c040',0.12);c2.userData.targetOpacity=0;c2.material.opacity=0;nncDepConns.push(c2);allConns.push(c2);
+}
+
+// President connections for later slides
+const presDeputyConn=Conn(president,deputy,'#FFD700',0.22);presDeputyConn.userData.targetOpacity=0;presDeputyConn.material.opacity=0;allConns.push(presDeputyConn);
+const presSecGenConn=Conn(president,secGen,'#FFD700',0.18);presSecGenConn.userData.targetOpacity=0;presSecGenConn.material.opacity=0;allConns.push(presSecGenConn);
+const presShuraConn=Conn(president,shura,'#9B7FD4',0.12);presShuraConn.userData.targetOpacity=0;presShuraConn.material.opacity=0;allConns.push(presShuraConn);
+
+// SecGen-to-department connections
+const secGenDeptConns=[];
+const deptOrderRef=[...deptsR1,...deptsR2];
+for(let i=0;i<10;i++){const c=Conn(secGen,deptOrderRef[i],'#5B9BD5',0.14);c.userData.targetOpacity=0;c.material.opacity=0;secGenDeptConns.push(c);allConns.push(c);}
+
+memberConns.flat().forEach(c=>allConns.push(c));
+
+// ═══ ALL NODES ═══
+const allNodes=[president,shura,execTeam,deputy,secGen,vpW,vpS,vpN,vpE,...nnNodes,...allDepts,mga,
+  president_B,shura_B,execTeam_B,...allDeptsB];
+const allDotsList=[...memberDots.flat(),...nncDots];
+
+// Ripple rings for excitement animation (slide 22)
+const rippleRings=[];
+for(let i=0;i<8;i++){
+  const ringsForNNC=[];
+  for(let r=0;r<3;r++){
+    const ring=new THREE.Mesh(
+      new THREE.RingGeometry(0.1,0.15,32),
+      new THREE.MeshBasicMaterial({color:0xFFAA44,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false})
+    );
+    ring.userData.baseScale=0;ring.userData.targetOpacity=0;ring.userData.ringIdx=r;
+    scene.add(ring);
+    ringsForNNC.push(ring);
+  }
+  rippleRings.push(ringsForNNC);
+}
+let slideStartTime=0;
+const clock=new THREE.Clock();
+let elapsed=0;
+
+// ═══ PHASE 2 NN POSITIONS ═══
+const p2DX=[-2.8,-1.4,0,1.4,2.8];
+const p2nnL=[]; [-3,-2.2,-1.4,-0.6].forEach(dx=>p2nnL.push([LX+dx,3.3]));
+[0.2,1,1.8,2.6].forEach(dx=>p2nnL.push([LX+dx,3.3]));
+const p2nnR=[]; [-3.4,-2.6,-1.8,-1,-0.2].forEach(dx=>p2nnR.push([RX+dx,3.3]));
+[0.6,1.4,2.2,3,3.8].forEach(dx=>p2nnR.push([RX+dx,3.3]));
+
+// ═══ SLIDE 3 zoomed positions (centered, just our side) ═══
+const s3nnPos=[[-3.5,2.5],[-2.5,2.5],[-1.5,2.5],[-0.5,2.5],[0.5,2.5],[1.5,2.5],[2.5,2.5],[3.5,2.5]];
+
+// Member helper
+function membersBelow(nnPos){const r=[];for(let m=0;m<5;m++)r.push([nnPos[0]+(m-2)*0.22,nnPos[1]-0.65]);return r;}
+function membersInside(ni){
+  const np=arcPos(nnRadius,ni,8);
+  const dx=np[0]-FCX,dy=np[1]-FCY,ang=Math.atan2(dy,dx),r=[];
+  for(let m=0;m<5;m++){const off=(m-2)*0.14,pA=ang+Math.PI/2;r.push([np[0]-Math.cos(ang)*0.4+Math.cos(pA)*off,np[1]-Math.sin(ang)*0.4+Math.sin(pA)*off]);}
+  return r;
+}
+
+// ═══ SLIDE DEFINITIONS ═══
+const slideInfo=[
+  {name:'Full Chapter',sub:'Before the Split',color:'#e8927c'},
+  {name:'The Split',sub:'West & South → "West" · North & East → "East"',color:'#e8c97c'},
+  {name:'Our Chapter: West',sub:'Focusing on Our 8 Neighborhoods',color:'#e8c97c'},
+  {name:'Flattening the Layers',sub:'Two VPs Become One Deputy',color:'#7cb8e8'},
+  {name:'Empowering the NNC',sub:'Giving Voice to the NN Coordinator',color:'#7cb8e8'},
+  {name:'The NNC Forum',sub:'Coordinators Form Their Circle',color:'#7ce8b3'},
+  {name:'Departments Within Reach',sub:'Bridging the Gap to the Workforce',color:'#7ce8b3'},
+  {name:'Secretary General',sub:'Coordinating Department Operations',color:'#7ce8b3'},
+  {name:'Strategic Leadership',sub:'Vision, Strategy, Direction',color:'#7ce8b3'},
+  {name:'Departments & Sec. General',sub:'The Work & Its Coordinator',color:'#7ce8b3'},
+  {name:'Deputy & NNC Forum',sub:'Overseeing the Workforce Together',color:'#7ce8b3'},
+  {name:'NeighborNets',sub:'Our Basic Organizing Unit',color:'#7ce8b3'},
+  {name:'NN Members',sub:'The People on the Ground',color:'#7ce8b3'},
+  {name:'The Complete Structure',sub:'Connected · Organized · Mission-Driven',color:'#7ce8b3'},
+  {name:'Scenario: Weekly NNC Forum',sub:'The Deputy Opens the Call',color:'#c8a2f0'},
+  {name:'This Week\'s Topic',sub:'The Upcoming Fundraiser',color:'#c8a2f0'},
+  {name:'Departments Join the Forum',sub:'Fundraising · Marketing · Oak Cliff',color:'#c8a2f0'},
+  {name:'The Ask',sub:'Fundraising: Every NN Should Raise $10K',color:'#c8a2f0'},
+  {name:'NNCs Respond',sub:'Owning the Outcomes',color:'#c8a2f0'},
+  {name:'Marketing Needs Help',sub:'"We Need Help With Online Ads"',color:'#c8a2f0'},
+  {name:'NNC6 Has Talent',sub:'"I Have Just the Person"',color:'#c8a2f0'},
+  {name:'Back to the Ground',sub:'NNCs Take It to Their People',color:'#c8a2f0'},
+];
+
+let slide=1;
+
+function hideAll(){
+  allNodes.forEach(n=>{n.userData.targetScale=0;n.userData.targetOpacity=0;});
+  allDotsList.forEach(d=>{d.userData.targetScale=0;d.userData.targetOpacity=0;d.userData.excitement=false;d.userData.bounce=false;});
+  allConns.forEach(c=>{c.userData.targetOpacity=0;c.userData.pulse=false;c.userData.pulseSpeed=0;c.userData.pulseIdx=0;c.userData.cascade=false;});
+  rippleRings.forEach(rr=>rr.forEach(r=>{r.userData.targetOpacity=0;r.scale.set(0.01,0.01,1);}));
+  walls.forEach(w=>w.userData.targetOpacity=0);
+  splitWall.userData.targetOpacity=0;
+  wallLeftVP.userData.targetOpacity=0;wallRightVP.userData.targetOpacity=0;
+  [nncForumRing,nncForumDisk,nnRing,deptRing].forEach(r=>r.userData.targetOpacity=0);
+  nncForumLabel.userData.targetOpacity=0;
+  nncRect.userData.targetOpacity=0;nncBorder.userData.targetOpacity=0;nncFlatLabel.userData.targetOpacity=0;
+  nncRect.userData.forumMode=false;nncBorder.userData.forumMode=false;nncFlatLabel.userData.forumMode=false;
+  mgaRectMesh.userData.targetOpacity=0;mgaBorderLine.userData.targetOpacity=0;mgaFlatLabel.userData.targetOpacity=0;mgaFlatLabel2.userData.targetOpacity=0;
+}
+
+function showNode(n,x,y,op){n.userData.targetPos.set(x,y,0);n.userData.targetScale=1;n.userData.targetOpacity=op!==undefined?op:0.9;}
+function showDot(d,x,y,op){d.userData.targetPos.set(x,y,0);d.userData.targetScale=1;d.userData.targetOpacity=op!==undefined?op:0.8;}
+
+function setSlide(s){
+  slide=s;
+  manualCam=false;
+  document.getElementById('phase-label').textContent=s+' / '+TOTAL_SLIDES;
+  document.getElementById('prevBtn').disabled=(s===1);
+  document.getElementById('nextBtn').disabled=(s===TOTAL_SLIDES);
+  document.querySelectorAll('.callout').forEach(el=>el.classList.toggle('visible',el.dataset.slide==s));
+  const info=slideInfo[s-1];
+  document.getElementById('title').textContent=info.name;
+  document.getElementById('title').style.color=info.color;
+  document.getElementById('subtitle').textContent=info.sub;
+
+  hideAll();
+  slideStartTime=clock.elapsedTime;
+
+  // ─── SLIDE 1: Full Chapter ───
+  if(s===1){
+    tCamX=0;tCamY=3;tCamZ=28;
+    showNode(president,0,7.5);showNode(shura,-2.5,6.3);showNode(execTeam,2.5,6.3);
+    showNode(vpW,-6.5,4.8);showNode(vpS,-2.2,4.8);showNode(vpN,2.2,4.8);showNode(vpE,6.5,4.8);
+    nnOldPos.forEach((p,i)=>{showNode(nnNodes[i],p[0],p[1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;});
+    for(let n=0;n<18;n++){const mp=membersBelow(nnOldPos[n]);for(let m=0;m<5;m++){showDot(memberDots[n][m],mp[m][0],mp[m][1],0.7);memberConns[n][m].userData.targetOpacity=0.12;}}
+    deptsR1.forEach((d,i)=>showNode(d,deptXs[i],deptY1));
+    deptsR2.forEach((d,i)=>{showNode(d,deptXs[i],deptY2);});
+    deptsR2[0].userData.label.material.map=rndTexOld;deptsR2[0].userData.label.material.needsUpdate=true;
+    showNode(mga,0,1.5);
+    walls.forEach(w=>w.userData.targetOpacity=0.3);
+    p1Conns.forEach(c=>c.userData.targetOpacity=0.15);
+  }
+
+  // ─── SLIDE 2: The Split ───
+  if(s===2){
+    tCamX=0;tCamY=3;tCamZ=28;
+    const fade=0.2;
+    showNode(president,LX,7.5);showNode(shura,LX-1.5,6.3);showNode(execTeam,LX+1.5,6.3);
+    showNode(president_B,RX,7.5,fade);showNode(shura_B,RX-1.5,6.3,fade);showNode(execTeam_B,RX+1.5,6.3,fade);
+    showNode(vpW,LX-1.5,4.8);showNode(vpS,LX+1.5,4.8);
+    showNode(vpN,RX-1.5,4.8,fade);showNode(vpE,RX+1.5,4.8,fade);
+    deptsR1.forEach((d,i)=>showNode(d,LX+p2DX[i],deptY1));
+    deptsR2.forEach((d,i)=>showNode(d,LX+p2DX[i],deptY2));
+    deptsR1_B.forEach((d,i)=>showNode(d,RX+p2DX[i],deptY1,fade));
+    deptsR2_B.forEach((d,i)=>showNode(d,RX+p2DX[i],deptY2,fade));
+    for(let i=0;i<8;i++){showNode(nnNodes[i],p2nnL[i][0],p2nnL[i][1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      const mp=membersBelow(p2nnL[i]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.7);memberConns[i][m].userData.targetOpacity=0.12;}}
+    for(let i=8;i<18;i++){showNode(nnNodes[i],p2nnR[i-8][0],p2nnR[i-8][1],fade);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      const mp=membersBelow(p2nnR[i-8]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],fade*0.5);memberConns[i][m].userData.targetOpacity=fade*0.3;}}
+    showNode(mga,LX,1.5);
+    splitWall.userData.targetOpacity=0.5;
+    wallLeftVP.userData.targetOpacity=0.25;wallRightVP.userData.targetOpacity=0.15;
+    p1Conns.forEach(c=>c.userData.targetOpacity=0.06);
+  }
+
+  // ─── SLIDE 3: Zoom into West ───
+  if(s===3){
+    tCamX=-6;tCamY=4;tCamZ=18;
+    showNode(president,LX,7.5);showNode(shura,LX-1.5,6.3);showNode(execTeam,LX+1.5,6.3);
+    showNode(vpW,LX-1.5,4.8);showNode(vpS,LX+1.5,4.8);
+    deptsR1.forEach((d,i)=>showNode(d,LX+p2DX[i],deptY1));
+    deptsR2.forEach((d,i)=>showNode(d,LX+p2DX[i],deptY2));
+    for(let i=0;i<8;i++){showNode(nnNodes[i],p2nnL[i][0],p2nnL[i][1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      const mp=membersBelow(p2nnL[i]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.7);memberConns[i][m].userData.targetOpacity=0.12;}}
+    showNode(mga,LX,1.5);
+    wallLeftVP.userData.targetOpacity=0.25;
+    p1Conns.forEach(c=>c.userData.targetOpacity=0.1);
+  }
+
+  // ─── SLIDE 4: Flatten — VPs merge into Deputy ───
+  if(s===4){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,7);showNode(shura,-2,6);
+    // VPs converge to Deputy position and fade
+    showNode(vpW,0,4.8,0);showNode(vpS,0,4.8,0);
+    // Deputy fades in at same spot
+    showNode(deputy,0,4.8,0.9);
+    // NNs in a line under deputy
+    const s4nn=[];for(let i=0;i<8;i++)s4nn.push([-3.5+i*1,3.3]);
+    for(let i=0;i<8;i++){showNode(nnNodes[i],s4nn[i][0],s4nn[i][1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      const mp=membersBelow(s4nn[i]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.7);memberConns[i][m].userData.targetOpacity=0.12;}}
+    deptsR1.forEach((d,i)=>showNode(d,deptXs[i],deptY1,0.5));
+    deptsR2.forEach((d,i)=>showNode(d,deptXs[i],deptY2,0.5));
+    showNode(mga,0,1.5);
+    deputyNNConns.forEach(c=>c.userData.targetOpacity=0.16);
+    presDeputyConn.userData.targetOpacity=0.22;
+    presShuraConn.userData.targetOpacity=0.12;
+    // Pre-position NNC dots at their NN positions (hidden) so they animate out in slide 5
+    const s4nn2=[];for(let i=0;i<8;i++)s4nn2.push([-3.5+i*1,3.3]);
+    for(let i=0;i<8;i++){nncDots[i].userData.targetPos.set(s4nn2[i][0],s4nn2[i][1],0);nncDots[i].userData.targetScale=0;nncDots[i].userData.targetOpacity=0;}
+    // Wall drops first — the lerp handles the timing naturally since VPs also need to travel
+    // Wall is already hidden by hideAll(), VPs start moving from slide 3 positions
+  }
+
+  // ─── SLIDE 5: NNC pops out above each NN ───
+  if(s===5){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,7);showNode(shura,-2,6);
+    showNode(deputy,0,4.8);
+    const s5nn=[];for(let i=0;i<8;i++)s5nn.push([-3.5+i*1,3.3]);
+    for(let i=0;i<8;i++){
+      showNode(nnNodes[i],s5nn[i][0],s5nn[i][1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      showDot(nncDots[i],s5nn[i][0],s5nn[i][1]+0.55,0.9);
+      nncNNConns[i].userData.targetOpacity=0.15;
+      const mp=membersBelow(s5nn[i]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.7);memberConns[i][m].userData.targetOpacity=0.12;}
+    }
+    deptsR1.forEach((d,i)=>showNode(d,deptXs[i],deptY1,0.4));
+    deptsR2.forEach((d,i)=>showNode(d,deptXs[i],deptY2,0.4));
+    showNode(mga,0,1.5);
+    deputyNNConns.forEach(c=>c.userData.targetOpacity=0.14);
+    presDeputyConn.userData.targetOpacity=0.22;
+    presShuraConn.userData.targetOpacity=0.12;
+  }
+
+  // ─── SLIDE 6: NNC Forum (flat) ───
+  if(s===6){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,7);showNode(shura,-2,6);
+    showNode(deputy,0,5.2); // above the forum, running it
+
+    // NNCs in a horizontal line inside the rectangle
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      showDot(nncDots[i],nx,nncY,0.9);
+      // NNs below the forum
+      showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      nncNNConns[i].userData.targetOpacity=0.15;
+      // Members below NNs
+      const mp=membersBelow([nx,2.5]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.6);memberConns[i][m].userData.targetOpacity=0.1;}
+    }
+
+    // NNC Forum rectangle
+    nncRect.userData.targetOpacity=0.06;
+    nncBorder.userData.targetOpacity=0.4;
+    nncFlatLabel.userData.targetOpacity=0.8;
+
+    deptsR1.forEach((d,i)=>showNode(d,deptXs[i],deptY1,0.3));
+    deptsR2.forEach((d,i)=>showNode(d,deptXs[i],deptY2,0.3));
+    mgaRectMesh.userData.targetOpacity=0.05;mgaBorderLine.userData.targetOpacity=0.35;mgaFlatLabel.userData.targetOpacity=0.7;mgaFlatLabel2.userData.targetOpacity=0.7;
+    deputyNNConns.forEach(c=>c.userData.targetOpacity=0.1);
+    presDeputyConn.userData.targetOpacity=0.22;
+    presShuraConn.userData.targetOpacity=0.1;
+  }
+
+  // ─── SLIDE 7: Departments come down (flat) ───
+  if(s===7){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,8.5);showNode(shura,3,8);
+    showNode(deputy,0,5.4);
+
+    // Departments in a flat line between President and Deputy
+    const deptOrder=[...deptsR1,...deptsR2];
+    const deptFlatY=6.8;
+    for(let i=0;i<10;i++){
+      const dx=-4.5+i*1;
+      showNode(deptOrder[i],dx,deptFlatY);
+    }
+    deptsR2[0].userData.label.material.map=rndTexNew;deptsR2[0].userData.label.material.needsUpdate=true;
+
+    // NNCs in forum
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      showDot(nncDots[i],nx,nncY,0.9);
+      showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      nncNNConns[i].userData.targetOpacity=0.15;nncDepConns[i].userData.targetOpacity=0.12;
+      const mp=membersBelow([nx,2.5]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.6);memberConns[i][m].userData.targetOpacity=0.1;}
+    }
+
+    nncRect.userData.targetOpacity=0.06;nncBorder.userData.targetOpacity=0.4;nncFlatLabel.userData.targetOpacity=0.8;
+    mgaRectMesh.userData.targetOpacity=0.05;mgaBorderLine.userData.targetOpacity=0.35;mgaFlatLabel.userData.targetOpacity=0.7;mgaFlatLabel2.userData.targetOpacity=0.7;
+    presDeputyConn.userData.targetOpacity=0.22;presShuraConn.userData.targetOpacity=0.1;
+  }
+
+  // ─── SLIDE 8: Secretary General joins at Deputy level ───
+  if(s===8){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,9);showNode(shura,3,8.5);
+
+    const deptOrder=[...deptsR1,...deptsR2];
+    for(let i=0;i<10;i++){showNode(deptOrder[i],-4.5+i*1,7.2);}
+    deptsR2[0].userData.label.material.map=rndTexNew;deptsR2[0].userData.label.material.needsUpdate=true;
+
+    showNode(deputy,-2,5.4);
+    showNode(secGen,2,5.4);
+    secGenDeptConns.forEach(c=>c.userData.targetOpacity=0.14);
+    nncDepConns.forEach(c=>c.userData.targetOpacity=0.12);
+
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      showDot(nncDots[i],nx,nncY,0.9);
+      showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      nncNNConns[i].userData.targetOpacity=0.15;
+      const mp=membersBelow([nx,2.5]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.6);memberConns[i][m].userData.targetOpacity=0.1;}
+    }
+
+    nncRect.userData.targetOpacity=0.06;nncBorder.userData.targetOpacity=0.4;nncFlatLabel.userData.targetOpacity=0.8;
+    mgaRectMesh.userData.targetOpacity=0.05;mgaBorderLine.userData.targetOpacity=0.35;mgaFlatLabel.userData.targetOpacity=0.7;mgaFlatLabel2.userData.targetOpacity=0.7;
+    presDeputyConn.userData.targetOpacity=0.22;presSecGenConn.userData.targetOpacity=0.18;presShuraConn.userData.targetOpacity=0.1;
+  }
+
+  // ─── HELPER: Base flat layout with highlighting ───
+  function baseSlide(highlight){
+    tCamX=0;tCamY=3;tCamZ=20;
+    const f=0.9, d=0.12;
+
+    const h=highlight;
+    const presOp = h==='leadership'?f:d;
+    const shuraOp = h==='leadership'?f:d;
+    const deputyOp = (h==='leadership'||h==='deputy'||h==='deputy_nnc')?f:d;
+    const secgenOp = (h==='leadership'||h==='secgen'||h==='depts_secgen')?f:d;
+    const deptOp = (h==='depts'||h==='secgen'||h==='depts_secgen')?f:d;
+    const nncOp = (h==='nnc'||h==='deputy_nnc')?f:d;
+    const nnOp = (h==='nn'||h==='nnc'||h==='deputy_nnc')?f:d;
+    const memOp = h==='members'?0.8:d*0.6;
+    const mgaOp = (h==='leadership'||h==='members')?f:d;
+
+    showNode(president,0,9,presOp);showNode(shura,3,8.5,shuraOp);
+
+    const deptOrder=[...deptsR1,...deptsR2];
+    for(let i=0;i<10;i++){showNode(deptOrder[i],-4.5+i*1,7.2,deptOp);}
+    deptsR2[0].userData.label.material.map=rndTexNew;deptsR2[0].userData.label.material.needsUpdate=true;
+
+    showNode(deputy,-2,5.4,deputyOp);
+    showNode(secGen,2,5.4,secgenOp);
+    secGenDeptConns.forEach(c=>c.userData.targetOpacity=(h==='secgen'||h==='depts'||h==='depts_secgen')?0.2:0.04);
+    nncDepConns.forEach(c=>c.userData.targetOpacity=(h==='deputy'||h==='nnc'||h==='deputy_nnc')?0.2:0.04);
+
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      showDot(nncDots[i],nx,nncY,nncOp);
+      showNode(nnNodes[i],nx,2.5,nnOp);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      nncNNConns[i].userData.targetOpacity=(h==='nnc'||h==='nn'||h==='deputy_nnc')?0.2:0.03;
+      const mp=membersBelow([nx,2.5]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],memOp);memberConns[i][m].userData.targetOpacity=h==='members'?0.15:0.03;}
+    }
+
+    nncRect.userData.targetOpacity=(h==='nnc'||h==='deputy_nnc')?0.08:0.03;
+    nncBorder.userData.targetOpacity=(h==='nnc'||h==='deputy_nnc')?0.5:0.15;
+    nncFlatLabel.userData.targetOpacity=(h==='nnc'||h==='deputy_nnc')?0.9:0.25;
+
+    showNode(mga,0,0.8,0); // hide circle version
+    const mgaHi=(h==='leadership'||h==='members');
+    mgaRectMesh.userData.targetOpacity=mgaHi?0.08:0.02;
+    mgaBorderLine.userData.targetOpacity=mgaHi?0.5:0.12;
+    mgaFlatLabel.userData.targetOpacity=mgaHi?0.9:0.2;
+    mgaFlatLabel2.userData.targetOpacity=mgaHi?0.9:0.2;
+    presDeputyConn.userData.targetOpacity=(h==='leadership'||h==='deputy'||h==='deputy_nnc')?0.25:0.04;
+    presSecGenConn.userData.targetOpacity=(h==='leadership'||h==='secgen'||h==='depts_secgen')?0.2:0.04;
+    presShuraConn.userData.targetOpacity=(h==='leadership')?0.15:0.03;
+    deputyNNConns.forEach(c=>c.userData.targetOpacity=(h==='deputy'||h==='deputy_nnc')?0.18:0.03);
+  }
+
+  // ─── SLIDE 9: Strategic Leadership ───
+  if(s===9) baseSlide('leadership');
+  // ─── SLIDE 10: Departments + Secretary General ───
+  if(s===10) baseSlide('depts_secgen');
+  // ─── SLIDE 11: Deputy + NNC Forum ───
+  if(s===11) baseSlide('deputy_nnc');
+  // ─── SLIDE 12: NeighborNets ───
+  if(s===12) baseSlide('nn');
+  // ─── SLIDE 13: NN Members ───
+  if(s===13) baseSlide('members');
+
+  // ─── SLIDE 14: Complete Structure ───
+  if(s===14){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,9);showNode(shura,3,8.5);
+    const deptOrder=[...deptsR1,...deptsR2];
+    for(let i=0;i<10;i++){showNode(deptOrder[i],-4.5+i*1,7.2);}
+    deptsR2[0].userData.label.material.map=rndTexNew;deptsR2[0].userData.label.material.needsUpdate=true;
+    showNode(deputy,-2,5.4);showNode(secGen,2,5.4);
+    secGenDeptConns.forEach(c=>c.userData.targetOpacity=0.14);
+    nncDepConns.forEach(c=>c.userData.targetOpacity=0.12);
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      showDot(nncDots[i],nx,nncY,0.9);
+      showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      nncNNConns[i].userData.targetOpacity=0.15;
+      const mp=membersBelow([nx,2.5]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.6);memberConns[i][m].userData.targetOpacity=0.1;}
+    }
+    nncRect.userData.targetOpacity=0.06;nncBorder.userData.targetOpacity=0.4;nncFlatLabel.userData.targetOpacity=0.8;
+    mgaRectMesh.userData.targetOpacity=0.05;mgaBorderLine.userData.targetOpacity=0.35;mgaFlatLabel.userData.targetOpacity=0.7;mgaFlatLabel2.userData.targetOpacity=0.7;
+    presDeputyConn.userData.targetOpacity=0.22;presSecGenConn.userData.targetOpacity=0.18;presShuraConn.userData.targetOpacity=0.1;
+  }
+
+  // ═══ SCENARIO SLIDES: NNC Forum Weekly Call ═══
+  // Forum-focused layout helper
+  function forumScene(opts){
+    tCamX=0;tCamY=3.5;tCamZ=14; // zoomed into forum area
+
+    // President and Deputy inside the forum — smaller, peer-sized
+    showNode(president,-3.5,4.6,opts.presOp||0.9);president.userData.targetScale=0.55;
+    showNode(deputy,3.5,4.6,opts.depOp||0.9);deputy.userData.targetScale=0.55;
+    showNode(shura,0,0,0);
+    if(opts.sgOp){showNode(secGen,0,5.5,opts.sgOp);}else{showNode(secGen,0,0,0);}
+
+    // NNCs in forum line
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      const nncHi=opts.hiNNC&&opts.hiNNC.includes(i);
+      showDot(nncDots[i],nx,nncY,nncHi?1:0.7);
+      showNode(nnNodes[i],nx,2.6,nncHi?0.9:0.35);
+      nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+      nncNNConns[i].userData.targetOpacity=nncHi?0.25:0.06;
+      // members dimmed
+      const mp=membersBelow([nx,2.6]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.15);memberConns[i][m].userData.targetOpacity=0.03;}
+    }
+
+    // Forum rect — expanded (triple height via scaleY, reposition to cover more)
+    nncRect.userData.targetOpacity=0.08;nncBorder.userData.targetOpacity=0.5;nncFlatLabel.userData.targetOpacity=0.9;
+    nncRect.userData.forumMode=true;
+    nncBorder.userData.forumMode=true;
+    nncFlatLabel.userData.forumMode=true;
+
+    // Departments - most dimmed above unless joining
+    const deptOrder=[...deptsR1,...deptsR2];
+    const joinIdx=opts.joinDepts||[];
+    const hiDeptIdx=opts.hiDept||[];
+    for(let i=0;i<10;i++){
+      if(joinIdx.includes(i)){
+        const jPos=joinIdx.indexOf(i);
+        const jx=-1.5+jPos*1.5;
+        showNode(deptOrder[i],jx,5.0,hiDeptIdx.includes(i)?1:0.7);
+      } else {
+        showNode(deptOrder[i],-4.5+i*1,7.2,0.1);
+      }
+    }
+    deptsR2[0].userData.label.material.map=rndTexNew;deptsR2[0].userData.label.material.needsUpdate=true;
+
+    // SecGen-dept connections for joined depts
+    secGenDeptConns.forEach((c,i)=>c.userData.targetOpacity=joinIdx.includes(i)?0.2:0.02);
+    nncDepConns.forEach(c=>c.userData.targetOpacity=0.04);
+
+    // MGA rect dimmed
+    mgaRectMesh.userData.targetOpacity=0.02;mgaBorderLine.userData.targetOpacity=0.1;mgaFlatLabel.userData.targetOpacity=0.15;mgaFlatLabel2.userData.targetOpacity=0.15;
+
+    presDeputyConn.userData.targetOpacity=0.04;presSecGenConn.userData.targetOpacity=opts.sgOp?0.12:0.02;presShuraConn.userData.targetOpacity=0.02;
+    deputyNNConns.forEach(c=>c.userData.targetOpacity=0.04);
+  }
+
+  // Fundraising=deptOrder[2], Marketing=deptOrder[3], OakCliff=deptOrder[8]
+
+  // ─── SLIDE 15: Weekly Call Opens ───
+  if(s===15) forumScene({});
+
+  // ─── SLIDE 16: SecGen flags the fundraiser ───
+  if(s===16) forumScene({sgOp:0.8});
+
+  // ─── SLIDE 17: Departments join the forum, SecGen steps away ───
+  if(s===17) forumScene({sgOp:0,joinDepts:[2,3,8]});
+
+  // ─── SLIDE 18: Fundraising makes the ask ───
+  if(s===18) forumScene({joinDepts:[2,3,8],hiDept:[2]});
+
+  // ─── SLIDE 19: NNC3 steps up, NNC7 contributes ───
+  if(s===19) forumScene({joinDepts:[2,3,8],hiDept:[2],hiNNC:[2,6]});
+
+  // ─── SLIDE 20: Marketing needs help ───
+  if(s===20) forumScene({joinDepts:[2,3,8],hiDept:[3]});
+
+  // ─── SLIDE 21: NNC6 has the talent ───
+  if(s===21) forumScene({joinDepts:[2,3,8],hiDept:[3],hiNNC:[5]});
+
+  // ─── SLIDE 22: Back to the ground — NNCs discuss with their members ───
+  if(s===22){
+    tCamX=0;tCamY=3;tCamZ=20;
+    showNode(president,0,9,0.5);showNode(shura,3,8.5,0.3);
+    const deptOrder=[...deptsR1,...deptsR2];
+    for(let i=0;i<10;i++){showNode(deptOrder[i],-4.5+i*1,7.2,0.25);}
+    deptsR2[0].userData.label.material.map=rndTexNew;deptsR2[0].userData.label.material.needsUpdate=true;
+    showNode(deputy,-2,5.4,0.4);showNode(secGen,2,5.4,0.3);
+    secGenDeptConns.forEach(c=>c.userData.targetOpacity=0.04);
+    nncDepConns.forEach(c=>c.userData.targetOpacity=0.03);
+    const keyNNCs=[2,5,6]; // NNC3, NNC6, NNC7 fire first
+    const cascadeDelay=[1.5,1.5,0,1.5,1.5,0,0,1.5]; // key=0s, others=1.5s stagger
+    const nncY=3.85;
+    for(let i=0;i<8;i++){
+      const nx=-3.5+i*1;
+      const isKey=keyNNCs.includes(i);
+      showDot(nncDots[i],nx,nncY,1);
+      nncDots[i].userData.excitement=true;
+      nncDots[i].userData.exciteIdx=i;
+      nncDots[i].userData.exciteKey=isKey;
+      nncDots[i].userData.bounce=true;
+      nncDots[i].userData.bounceAmp=isKey?0.06:0.035;
+      nncDots[i].userData.bounceSpeed=isKey?4:2.5;
+      nncDots[i].userData.cascadeDelay=cascadeDelay[i];
+
+      showNode(nnNodes[i],nx,2.5,0.95);
+      nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
+
+      nncNNConns[i].userData.targetOpacity=0.6;
+      nncNNConns[i].userData.cascade=true;
+      nncNNConns[i].userData.cascadeDelay=cascadeDelay[i];
+      nncNNConns[i].userData.pulseSpeed=isKey?5:3;
+      nncNNConns[i].userData.pulseIdx=i;
+
+      // Ripple rings positioned at NNC
+      rippleRings[i].forEach(r=>{r.position.set(nx,nncY,0);r.userData.targetOpacity=0.6;});
+
+      const mp=membersBelow([nx,2.5]);
+      for(let m=0;m<5;m++){
+        showDot(memberDots[i][m],mp[m][0],mp[m][1],0.95);
+        memberDots[i][m].userData.excitement=true;
+        memberDots[i][m].userData.exciteIdx=i;
+        memberDots[i][m].userData.exciteMember=m;
+        memberDots[i][m].userData.exciteKey=isKey;
+        memberDots[i][m].userData.bounce=true;
+        memberDots[i][m].userData.bounceAmp=isKey?0.04:0.025;
+        memberDots[i][m].userData.bounceSpeed=isKey?5:3;
+        memberDots[i][m].userData.cascadeDelay=cascadeDelay[i]+0.4+m*0.15;
+
+        memberConns[i][m].userData.targetOpacity=0.6;
+        memberConns[i][m].userData.cascade=true;
+        memberConns[i][m].userData.cascadeDelay=cascadeDelay[i]+0.3;
+        memberConns[i][m].userData.pulseSpeed=isKey?5.5:3;
+        memberConns[i][m].userData.pulseIdx=i*5+m;
+      }
+    }
+    nncRect.userData.targetOpacity=0.03;nncBorder.userData.targetOpacity=0.2;nncFlatLabel.userData.targetOpacity=0.4;
+    mgaRectMesh.userData.targetOpacity=0.03;mgaBorderLine.userData.targetOpacity=0.2;mgaFlatLabel.userData.targetOpacity=0.4;mgaFlatLabel2.userData.targetOpacity=0.4;
+    presDeputyConn.userData.targetOpacity=0.05;presSecGenConn.userData.targetOpacity=0.04;presShuraConn.userData.targetOpacity=0.02;
+  }
+
+}
+
+document.getElementById('nextBtn').addEventListener('click',()=>{if(slide<TOTAL_SLIDES)setSlide(slide+1);});
+document.getElementById('prevBtn').addEventListener('click',()=>{if(slide>1)setSlide(slide-1);});
+document.getElementById('resetBtn').addEventListener('click',()=>{manualCam=false;const info=slideInfo[slide-1];setSlide(slide);});
+setSlide(1);
+
+// BG
+const pGeo=new THREE.BufferGeometry(),pP=new Float32Array(60*3);
+for(let i=0;i<60;i++){pP[i*3]=(Math.random()-0.5)*30;pP[i*3+1]=Math.random()*14-2;pP[i*3+2]=-4+Math.random()*-2;}
+pGeo.setAttribute('position',new THREE.BufferAttribute(pP,3));
+scene.add(new THREE.Points(pGeo,new THREE.PointsMaterial({color:0x334466,size:0.02,transparent:true,opacity:0.25})));
+
+// ═══ RENDER ═══
+function animate(){
+  requestAnimationFrame(animate);
+  const dt=Math.min(clock.getDelta(),0.05),s=2.5*dt,cs=1.8*dt;
+  elapsed=clock.elapsedTime;
+
+  // Animated camera (lerp to targets unless manual)
+  if(!manualCam){camX+=(tCamX-camX)*cs;camY+=(tCamY-camY)*cs;camZ+=(tCamZ-camZ)*cs;}
+
+  allNodes.forEach(n=>{
+    n.position.lerp(n.userData.targetPos,s);
+    const ts=n.userData.targetScale;n.scale.lerp(new THREE.Vector3(ts,ts,ts),s*1.5);
+    if(n.userData.mat)n.userData.mat.opacity+=(n.userData.targetOpacity-n.userData.mat.opacity)*s;
+    if(n.userData.label)n.userData.label.material.opacity+=(n.userData.targetOpacity-n.userData.label.material.opacity)*s;
+  });
+  allDotsList.forEach(d=>{
+    d.position.lerp(d.userData.targetPos,s);
+    const ts=d.userData.targetScale;d.scale.lerp(new THREE.Vector3(ts,ts,ts),s*1.5);
+    if(d.userData.mat)d.userData.mat.opacity+=(d.userData.targetOpacity-d.userData.mat.opacity)*s;
+
+    // Excitement: bounce + scale pulse + color shift
+    if(d.userData.bounce){
+      const age=elapsed-slideStartTime-(d.userData.cascadeDelay||0);
+      if(age>0){
+        const amp=d.userData.bounceAmp||0.06;
+        const spd=d.userData.bounceSpeed||3;
+        // Bounce vertically
+        d.position.y+=Math.sin(elapsed*spd+(d.userData.exciteIdx||0)*1.2+(d.userData.exciteMember||0)*0.8)*amp;
+        // Scale pulse
+        const scalePulse=1+0.12*Math.sin(elapsed*spd*0.8+(d.userData.exciteMember||0)*0.5);
+        d.scale.set(scalePulse*ts,scalePulse*ts,scalePulse*ts);
+        // Color shift: warm up from base to gold/orange
+        if(d.userData.mat){
+          const warmth=0.5+0.5*Math.sin(elapsed*2+(d.userData.exciteIdx||0)*0.9);
+          const isKey=d.userData.exciteKey;
+          const r=isKey?1.0:0.6+warmth*0.3;
+          const g=isKey?0.7+warmth*0.2:0.75;
+          const b=isKey?0.2+warmth*0.15:0.85-warmth*0.15;
+          d.userData.mat.color.setRGB(r,g,b);
+        }
+      }
+    } else if(d.userData.mat){
+      d.userData.mat.color.setRGB(1,1,1); // reset color
+    }
+  });
+  allConns.forEach(c=>{
+    let target=c.userData.targetOpacity;
+    if(c.userData.cascade){
+      // Cascade: fade in after delay, then pulse hard
+      const age=elapsed-slideStartTime-(c.userData.cascadeDelay||0);
+      if(age<0){target=0.02;}
+      else{
+        const fadeIn=Math.min(age/0.5,1);
+        const spd=c.userData.pulseSpeed||3;
+        const wave=Math.pow(Math.abs(Math.sin(elapsed*spd+(c.userData.pulseIdx||0)*0.4)),0.6);
+        target=target*fadeIn*(0.15+0.85*wave);
+        // Color shift connections warm
+        const warmth=0.5+0.5*Math.sin(elapsed*2.5+(c.userData.pulseIdx||0)*0.3);
+        c.material.color.setRGB(0.7+warmth*0.3,0.6+warmth*0.2,0.3);
+      }
+    } else if(c.userData.pulse){
+      target=target*(0.3+0.7*Math.abs(Math.sin(elapsed*3+c.id*0.7)));
+    } else {
+      c.material.color.setRGB(0.7,0.7,0.7); // reset
+    }
+    c.material.opacity+=(target-c.material.opacity)*s;
+    const pa=c.geometry.getAttribute('position'),a=c.userData.a,b=c.userData.b;
+    pa.array[0]=a.position.x;pa.array[1]=a.position.y;pa.array[2]=a.position.z;
+    pa.array[3]=b.position.x;pa.array[4]=b.position.y;pa.array[5]=b.position.z;
+    pa.needsUpdate=true;
+  });
+  walls.forEach(w=>w.material.opacity+=(w.userData.targetOpacity-w.material.opacity)*s);
+
+  // Ripple rings: expand outward and fade, repeat
+  rippleRings.forEach((ringsForNNC,i)=>{
+    const delay=[1.5,1.5,0,1.5,1.5,0,0,1.5][i];
+    const age=elapsed-slideStartTime-delay;
+    ringsForNNC.forEach((ring,r)=>{
+      if(ring.userData.targetOpacity>0&&age>0){
+        const cycle=3.5; // seconds per ripple cycle
+        const phase=((age+r*cycle/3)%cycle)/cycle; // 0..1, staggered
+        const sc=0.5+phase*4; // expand from 0.5 to 4.5
+        ring.scale.set(sc,sc,1);
+        ring.material.opacity=Math.max(0,(1-phase)*0.35);
+      } else {
+        ring.material.opacity*=0.9;
+      }
+    });
+  });
+  splitWall.material.opacity+=(splitWall.userData.targetOpacity-splitWall.material.opacity)*s;
+  wallLeftVP.material.opacity+=(wallLeftVP.userData.targetOpacity-wallLeftVP.material.opacity)*s;
+  wallRightVP.material.opacity+=(wallRightVP.userData.targetOpacity-wallRightVP.material.opacity)*s;
+  [nncForumRing,nncForumDisk,nnRing,deptRing].forEach(r=>r.material.opacity+=((r.userData.targetOpacity||0)-r.material.opacity)*s);
+  nncForumLabel.material.opacity+=((nncForumLabel.userData.targetOpacity||0)-nncForumLabel.material.opacity)*s;
+  // Flat rect elements
+  nncRectMat.opacity+=((nncRect.userData.targetOpacity||0)-nncRectMat.opacity)*s;
+  nncBorderMat.opacity+=((nncBorder.userData.targetOpacity||0)-nncBorderMat.opacity)*s;
+  nncFlatLabel.material.opacity+=((nncFlatLabel.userData.targetOpacity||0)-nncFlatLabel.material.opacity)*s;
+  // Forum mode: expand rect vertically
+  const fmTarget=nncRect.userData.forumMode?3:1;
+  const fmYTarget=nncRect.userData.forumMode?3.85+0.6:3.85; // shift up to cover expanded area
+  nncRect.scale.y+=(fmTarget-nncRect.scale.y)*s;
+  nncRect.position.y+=(fmYTarget-nncRect.position.y)*s;
+  nncBorder.scale.y+=(fmTarget-nncBorder.scale.y)*s;
+  nncBorder.position.y+=(fmYTarget-nncBorder.position.y)*s;
+  const fmLabelY=nncRect.userData.forumMode?3.85+0.6+(nncRectH*fmTarget)/2-0.15:3.85+bHH-0.15;
+  nncFlatLabel.position.y+=(fmLabelY-nncFlatLabel.position.y)*s;
+  // MGA rect
+  mgaRectMat.opacity+=((mgaRectMesh.userData.targetOpacity||0)-mgaRectMat.opacity)*s;
+  mgaBorderMat.opacity+=((mgaBorderLine.userData.targetOpacity||0)-mgaBorderMat.opacity)*s;
+  mgaFlatLabel.material.opacity+=((mgaFlatLabel.userData.targetOpacity||0)-mgaFlatLabel.material.opacity)*s;
+  mgaFlatLabel2.material.opacity+=((mgaFlatLabel2.userData.targetOpacity||0)-mgaFlatLabel2.material.opacity)*s;
+
+  camera.position.set(camX,camY,camZ);camera.lookAt(camX,camY,0);
+  renderer.render(scene,camera);
+}
+animate();
+
+window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
+</script>
+</body>
+</html>
