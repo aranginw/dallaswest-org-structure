@@ -11,49 +11,49 @@
 
   #header {
     position: absolute; top: 0; left: 0; right: 0;
-    text-align: center; padding: 18px 20px 6px; z-index: 10; pointer-events: none;
+    text-align: center; padding: 22px 24px 8px; z-index: 10; pointer-events: none;
   }
   #header h1 {
-    font-family: 'Playfair Display', serif; font-size: 24px;
-    letter-spacing: 1px; margin-bottom: 4px; transition: color 0.8s ease;
+    font-family: 'Playfair Display', serif; font-size: 30px;
+    letter-spacing: 1px; margin-bottom: 5px; transition: color 0.8s ease;
   }
   #header .subtitle {
-    font-size: 11px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase;
+    font-size: 13px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase;
   }
 
   #controls {
-    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-    z-index: 10; display: flex; align-items: center; gap: 10px;
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; align-items: center; gap: 12px;
   }
   .ctrl-btn {
     background: linear-gradient(135deg, #1a2a44, #243656);
     border: 1px solid rgba(255,255,255,0.12); color: #fff;
-    padding: 9px 22px; border-radius: 40px; font-family: 'DM Sans', sans-serif;
-    font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
+    padding: 11px 26px; border-radius: 40px; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
   }
   .ctrl-btn:hover { background: linear-gradient(135deg, #243656, #2e4a72); }
   .ctrl-btn:disabled { opacity: 0.3; cursor: default; }
-  #phase-label { font-size: 10px; opacity: 0.4; letter-spacing: 1px; text-transform: uppercase; min-width: 50px; text-align: center; }
+  #phase-label { font-size: 13px; opacity: 0.4; letter-spacing: 1px; text-transform: uppercase; min-width: 60px; text-align: center; }
 
   #callouts {
-    position: absolute; right: 16px; top: 80px;
-    z-index: 10; max-width: 230px; pointer-events: none;
-    max-height: calc(100vh - 160px); overflow-y: auto;
+    position: absolute; right: 20px; top: 90px;
+    z-index: 10; max-width: 280px; pointer-events: none;
+    max-height: calc(100vh - 180px); overflow-y: auto;
   }
   .callout {
     background: rgba(15,20,35,0.85); border-left: 3px solid;
-    padding: 9px 11px; margin-bottom: 7px; border-radius: 0 8px 8px 0;
-    font-size: 11px; line-height: 1.4; opacity: 0; transform: translateX(20px);
+    padding: 11px 13px; margin-bottom: 8px; border-radius: 0 8px 8px 0;
+    font-size: 14px; line-height: 1.45; opacity: 0; transform: translateX(20px);
     transition: all 0.6s ease;
     max-height: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; overflow: hidden;
   }
-  .callout.visible { opacity: 1; transform: translateX(0); max-height: 200px; padding: 9px 11px; margin-bottom: 7px; }
+  .callout.visible { opacity: 1; transform: translateX(0); max-height: 250px; padding: 11px 13px; margin-bottom: 8px; }
   .c-red { border-color: #e8927c; }
   .c-amber { border-color: #e8c97c; }
   .c-blue { border-color: #7cb8e8; }
   .c-green { border-color: #7ce8b3; }
   .c-purple { border-color: #c8a2f0; }
-  .callout strong { display: block; margin-bottom: 2px; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+  .callout strong { display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
   .c-red strong { color: #e8927c; }
   .c-amber strong { color: #e8c97c; }
   .c-blue strong { color: #7cb8e8; }
@@ -61,10 +61,10 @@
   .c-purple strong { color: #c8a2f0; }
 
   #legend {
-    position: absolute; left: 16px; bottom: 56px; z-index: 10; pointer-events: none;
+    position: absolute; left: 20px; bottom: 64px; z-index: 10; pointer-events: none;
   }
-  .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; font-size: 9px; opacity: 0.5; }
-  .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .legend-item { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; font-size: 11px; opacity: 0.5; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
 
   canvas { display: block; cursor: grab; }
   canvas:active { cursor: grabbing; }
@@ -87,15 +87,15 @@
 
   <div class="callout c-amber" data-slide="3"><strong>✦ Our Chapter</strong>Focusing on West — our 8 NNs, our leadership, our opportunity to restructure</div>
 
-  <div class="callout c-blue" data-slide="4"><strong>✦ Flatten the Layers</strong>VP West + VP South merge into one Deputy — now just one leader overseeing all 8 NNs directly</div>
+  <div class="callout c-blue" data-slide="4"><strong>✦ Consolidation</strong>VP West + VP South merge into one Deputy — now just one leader overseeing all 8 NNs directly</div>
   <div class="callout c-blue" data-slide="4"><strong>✦ No More Silos</strong>The regional walls are gone. One Deputy, empowered to make decisions on behalf of the President when the President is not present or unable to attend</div>
 
   <div class="callout c-blue" data-slide="5"><strong>✦ Empower the NNC</strong>Each NN Coordinator now has a visible, prominent role — they represent all the members of their NeighborNet</div>
 
-  <div class="callout c-green" data-slide="6"><strong>✦ The NNC Forum</strong>NNCs form their own circle — no longer segregated, they meet frequently to discuss on-the-ground issues</div>
+  <div class="callout c-green" data-slide="6"><strong>✦ The NNC Meeting</strong>NNCs form their own circle — no longer segregated, they meet frequently to discuss on-the-ground issues</div>
   <div class="callout c-green" data-slide="6"><strong>✦ Multiple Access Points</strong>MGAs can now voice their opinions through their NNC, the Deputy (a decision maker), the Sec. General, or the President directly</div>
 
-  <div class="callout c-green" data-slide="7"><strong>✦ Departments Within Reach</strong>Department leads are encouraged to attend the NNC Forum and share projects, issues, and needs directly — no more layers of separation. These departments are manned by our members and MGAs anyway</div>
+  <div class="callout c-green" data-slide="7"><strong>✦ Departments Within Reach</strong>Department leads are encouraged to attend the NNC Meeting and share projects, issues, and needs directly — no more layers of separation. These departments are manned by our members and MGAs anyway</div>
 
   <div class="callout c-green" data-slide="8"><strong>✦ Secretary General</strong>The Sec. General coordinates the department level — overseeing operations, identifying where assistance is needed and where opportunities are present</div>
 
@@ -114,25 +114,25 @@
 
   <div class="callout c-green" data-slide="14"><strong>✦ The Complete Structure</strong>Everyone is connected. Leadership is close to the action. Talent flows from NNs to departments. The structure serves the mission</div>
 
-  <div class="callout c-purple" data-slide="15"><strong>📋 Weekly NNC Forum Call</strong>The Deputy opens the weekly call. The President joins when available. All 8 NNCs are present — this is the pulse of the Chapter</div>
+  <div class="callout c-purple" data-slide="15"><strong>📋 Weekly NNC Meeting Call</strong>The Deputy opens the weekly call. The President joins when available. All 8 NNCs are present — this is the pulse of the Chapter</div>
   <div class="callout c-purple" data-slide="15"><strong>💡 Not Top-Down</strong>This isn't leadership giving orders. The NNCs are tactical decision-makers here — they know what's happening on the ground</div>
 
   <div class="callout c-purple" data-slide="16"><strong>📋 This Week's Priority</strong>The Sec. General flags the upcoming fundraiser. Three departments need to coordinate with the NNCs: Fundraising, Marketing, and Oak Cliff</div>
 
-  <div class="callout c-purple" data-slide="17"><strong>📋 Open Forum</strong>Department leads join the NNC Forum directly. No intermediaries, no telephone game — they bring their projects, issues, and needs straight to the people who will execute</div>
+  <div class="callout c-purple" data-slide="17"><strong>📋 Open Forum</strong>Department leads join the NNC Meeting directly. No intermediaries, no telephone game — they bring their projects, issues, and needs straight to the people who will execute</div>
 
   <div class="callout c-purple" data-slide="18"><strong>💬 Fundraising Lead</strong>"For this campaign, we need every NN to raise $10K. Here's the plan and the materials we have ready."</div>
 
-  <div class="callout c-purple" data-slide="19"><strong>💬 NNC3 (NN3)</strong>"We can do more. Our community is fired up — put us down for $15K."</div>
-  <div class="callout c-purple" data-slide="19"><strong>💬 NNC7 (NN7)</strong>"We're going to have a hard time with that. Maybe we can do $3K. But if you need A/V help, we have people for that."</div>
+  <div class="callout c-purple" data-slide="19"><strong>💬 VR NNC (VR NN)</strong>"We can do more. Our community is fired up — put us down for $15K."</div>
+  <div class="callout c-purple" data-slide="19"><strong>💬 Valencia NNC (Valencia NN)</strong>"We're going to have a hard time with that. Maybe we can do $3K. But if you need A/V help, we have people for that."</div>
   <div class="callout c-purple" data-slide="19"><strong>💡 This Is the Difference</strong>NNCs aren't just taking orders — they're owning the outcomes and committing based on what they know about their people</div>
 
   <div class="callout c-purple" data-slide="20"><strong>💬 Marketing Lead</strong>"We need help running online ads for the campaign. Does anyone have someone with digital marketing experience?"</div>
 
-  <div class="callout c-purple" data-slide="21"><strong>💬 NNC6 (NN6)</strong>"I have just the person — he's been wanting to contribute. I'll connect you this week."</div>
+  <div class="callout c-purple" data-slide="21"><strong>💬 Oak Cliff NNC (Oak Cliff NN)</strong>"I have just the person — he's been wanting to contribute. I'll connect you this week."</div>
   <div class="callout c-purple" data-slide="21"><strong>💡 Talent Pipeline in Action</strong>This is how talent surfaces — not through top-down assignments, but through NNCs who know their people and can match skills to needs in real time</div>
 
-  <div class="callout c-purple" data-slide="22"><strong>📋 After the Forum</strong>Every NNC goes back to their NeighborNet. NNC3, NNC6, and NNC7 have specific action items — but all 8 NNCs were part of the plan and carry that energy back</div>
+  <div class="callout c-purple" data-slide="22"><strong>📋 After the Forum</strong>Every NNC goes back to their NeighborNet. VR, Oak Cliff, and Valencia NNCs have specific action items — but all 8 NNCs were part of the plan and carry that energy back</div>
   <div class="callout c-purple" data-slide="22"><strong>💡 Everyone Is Involved</strong>Even NNCs who didn't speak up were there. They heard the strategy, they know the goals, and now they're mobilizing their people. The whole Chapter moves together</div>
 </div>
 
@@ -143,7 +143,7 @@
   <div class="legend-item"><div class="legend-dot" style="background:#3CC8A0"></div> Area VPs</div>
   <div class="legend-item"><div class="legend-dot" style="background:#4CAF7A"></div> NeighborNet (NN)</div>
   <div class="legend-item"><div class="legend-dot" style="background:#f0c040"></div> NNC (Coordinator)</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#a8d5a2"></div> Members</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ffffff"></div> Members</div>
   <div class="legend-item"><div class="legend-dot" style="background:#E8935D"></div> Departments</div>
   <div class="legend-item"><div class="legend-dot" style="background:#C47A5D"></div> Projects</div>
   <div class="legend-item"><div class="legend-dot" style="background:#7BAFD4"></div> MGA Body</div>
@@ -153,7 +153,7 @@
   <button class="ctrl-btn" id="prevBtn" disabled>← Back</button>
   <span id="phase-label">1 / 9</span>
   <button class="ctrl-btn" id="nextBtn">Next →</button>
-  <button class="ctrl-btn" id="resetBtn" style="margin-left:8px;font-size:10px;padding:7px 14px;">Reset View</button>
+  <button class="ctrl-btn" id="resetBtn" style="margin-left:10px;font-size:12px;padding:9px 18px;">Reset View</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -167,8 +167,8 @@ renderer.setSize(W,H); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2
 document.body.appendChild(renderer.domElement);
 
 // Camera
-let camZ=28, camX=0, camY=3;
-let tCamX=0, tCamY=3, tCamZ=28; // targets for animated zoom
+let camZ=14, camX=0, camY=5.5;
+let tCamX=0, tCamY=5.5, tCamZ=14; // targets for animated zoom
 let isDrag=false, dSX=0, dSY=0, cSX=0, cSY=0, manualCam=false;
 renderer.domElement.addEventListener('wheel', e=>{e.preventDefault();camZ=Math.max(6,Math.min(50,camZ+e.deltaY*0.02));tCamZ=camZ;manualCam=true;},{passive:false});
 renderer.domElement.addEventListener('mousedown', e=>{if(e.button===0){isDrag=true;dSX=e.clientX;dSY=e.clientY;cSX=camX;cSY=camY;}});
@@ -180,7 +180,7 @@ renderer.domElement.addEventListener('touchmove', e=>{e.preventDefault();if(e.to
 renderer.domElement.addEventListener('touchend', ()=>isDrag=false);
 
 // Helpers
-function makeTC(t,fs,c){const cv=document.createElement('canvas'),ctx=cv.getContext('2d');cv.width=512;cv.height=96;ctx.font=`bold ${fs}px 'Segoe UI',sans-serif`;ctx.fillStyle=c;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,256,48);return cv;}
+function makeTC(t,fs,c,w){const cv=document.createElement('canvas'),ctx=cv.getContext('2d');cv.width=w||512;cv.height=96;ctx.font=`bold ${fs}px 'Segoe UI',sans-serif`;ctx.fillStyle=c;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,cv.width/2,48);return cv;}
 
 function N(label,color,size,x,y){
   const g=new THREE.Group();
@@ -268,23 +268,27 @@ const vpN=N('VP North','#3CC8A0',0.26,2.2,4.8);
 const vpE=N('VP East','#3CC8A0',0.26,6.5,4.8);
 
 // ═══ 18 NNs ═══
+const nnNames=['Fort Worth','Coppell','VR','VR North','Irving','Oak Cliff','Valencia','Las Colinas'];
+for(let i=8;i<18;i++)nnNames.push('NN '+(i+1));
 const nnOldPos=[], nnNodes=[];
-[-8,-7.1,-6.2,-5.3].forEach((x,i)=>{nnNodes.push(N('NN '+(i+1),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
-[-3.5,-2.6,-1.7,-0.8].forEach((x,i)=>{nnNodes.push(N('NN '+(i+5),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
-[0.8,1.7,2.6,3.5,4.4].forEach((x,i)=>{nnNodes.push(N('NN '+(i+9),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
-[5.3,6.2,7.1,8,8.9].forEach((x,i)=>{nnNodes.push(N('NN '+(i+14),'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
+[-8,-7.1,-6.2,-5.3].forEach((x,i)=>{nnNodes.push(N(nnNames[i],'#4CAF7A',0.22,x,3.3));nnOldPos.push([x,3.3]);});
+[-3.5,-2.6,-1.7,-0.8].forEach((x,i)=>{nnNodes.push(N(nnNames[i+4],'#4CAF7A',0.22,x,3.3));nnOldPos.push([x,3.3]);});
+[0.8,1.7,2.6,3.5,4.4].forEach((x,i)=>{nnNodes.push(N(nnNames[i+8],'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
+[5.3,6.2,7.1,8,8.9].forEach((x,i)=>{nnNodes.push(N(nnNames[i+13],'#4CAF7A',0.18,x,3.3));nnOldPos.push([x,3.3]);});
 
-const nnTextures=[];for(let i=0;i<18;i++)nnTextures.push(new THREE.CanvasTexture(makeTC('NN '+(i+1),26,'#ffffff')));
+const nnTextures=[];for(let i=0;i<18;i++)nnTextures.push(new THREE.CanvasTexture(makeTC(nnNames[i],i<8?32:26,'#ffffff',i<8?1024:512)));
+// Make first 8 NN labels bigger and more readable
+for(let i=0;i<8;i++){nnNodes[i].userData.label.scale.set(4.5,0.7,1);nnNodes[i].userData.label.position.y=-0.5;}
 
 // ═══ NNC DOTS ═══
 const nncDots=[];
-for(let i=0;i<18;i++){const d=Dot('#f0c040',0.1,nnOldPos[i][0],nnOldPos[i][1]);d.scale.set(0,0,0);d.userData.targetScale=0;d.userData.targetOpacity=0;nncDots.push(d);}
+for(let i=0;i<18;i++){const d=Dot('#f0c040',0.14,nnOldPos[i][0],nnOldPos[i][1]);d.scale.set(0,0,0);d.userData.targetScale=0;d.userData.targetOpacity=0;nncDots.push(d);}
 
 // ═══ MEMBERS ═══
 const memberDots=[], memberConns=[];
 for(let n=0;n<18;n++){
   const cx=nnOldPos[n][0],cy=nnOldPos[n][1],dots=[],conns=[];
-  for(let m=0;m<5;m++){const dot=Dot('#a8d5a2',0.08,cx+(m-2)*0.22,cy-0.65);dots.push(dot);conns.push(Conn(nnNodes[n],dot,'#6aaa6a',0.15));}
+  for(let m=0;m<5;m++){const dot=Dot('#ffffff',0.08,cx+(m-2)*0.22,cy-0.65);dots.push(dot);conns.push(Conn(nnNodes[n],dot,'#888888',0.15));}
   memberDots.push(dots);memberConns.push(conns);
 }
 
@@ -301,18 +305,18 @@ const wallRightVP=Wall(RX,4,3,0xe8927c);wallRightVP.material.opacity=0;wallRight
 // ═══ RINGS (orbit version) ═══
 const nncForumRing=Ring(FCX,FCY,nncRadius-0.05,nncRadius+0.05,'#f0c040');
 const nncForumDisk=Disk(FCX,FCY,nncRadius-0.05,'#f0c040');
-const nncForumLabel=SLabel(FCX,FCY+nncRadius+0.4,'NNC FORUM','#f0c040');
+const nncForumLabel=SLabel(FCX,FCY+nncRadius+0.4,'NNC MEETING','#f0c040');
 const nnRing=Ring(FCX,FCY,nnRadius-0.04,nnRadius+0.04,'#4CAF7A');
 const deptRing=Ring(FCX,FCY,deptRadius-0.04,deptRadius+0.04,'#E8935D');
 
 // ═══ FLAT RECTANGLES (sandwich version) ═══
-// NNC Forum rect
-const nncRectW=9, nncRectH=1.2;
+// NNC Meeting rect
+const nncRectW=13, nncRectH=1.2;
 const nncRectMat=new THREE.MeshBasicMaterial({color:new THREE.Color('#f0c040'),transparent:true,opacity:0,side:THREE.DoubleSide});
 const nncRect=new THREE.Mesh(new THREE.PlaneGeometry(nncRectW,nncRectH),nncRectMat);
 nncRect.position.set(0,3.85,-0.15);nncRect.userData={targetOpacity:0};scene.add(nncRect);
 
-// NNC Forum rect border
+// NNC Meeting rect border
 const nncBorderMat=new THREE.LineBasicMaterial({color:new THREE.Color('#f0c040'),transparent:true,opacity:0});
 const bHW=nncRectW/2, bHH=nncRectH/2;
 const nncBorderGeo=new THREE.BufferGeometry().setFromPoints([
@@ -323,8 +327,8 @@ const nncBorderGeo=new THREE.BufferGeometry().setFromPoints([
 const nncBorder=new THREE.LineLoop(nncBorderGeo,nncBorderMat);
 nncBorder.position.set(0,3.85,-0.1);nncBorder.userData={targetOpacity:0};scene.add(nncBorder);
 
-// NNC Forum flat label
-const nncFlatLabel=SLabel(-bHW+1.2,3.85+bHH-0.15,'NNC FORUM','#f0c040');
+// NNC Meeting flat label
+const nncFlatLabel=SLabel(-bHW+1.2,3.85+bHH-0.15,'NNC MEETING','#f0c040');
 nncFlatLabel.scale.set(1.8,0.36,1);
 
 // MGA Body vertical rect (left side, spanning all levels)
@@ -451,8 +455,8 @@ let elapsed=0;
 
 // ═══ PHASE 2 NN POSITIONS ═══
 const p2DX=[-2.8,-1.4,0,1.4,2.8];
-const p2nnL=[]; [-3,-2.2,-1.4,-0.6].forEach(dx=>p2nnL.push([LX+dx,3.3]));
-[0.2,1,1.8,2.6].forEach(dx=>p2nnL.push([LX+dx,3.3]));
+const p2nnL=[]; [-3.5,-2.5,-1.5,-0.5].forEach(dx=>p2nnL.push([LX+dx,3.3]));
+[0.5,1.5,2.5,3.5].forEach(dx=>p2nnL.push([LX+dx,3.3]));
 const p2nnR=[]; [-3.4,-2.6,-1.8,-1,-0.2].forEach(dx=>p2nnR.push([RX+dx,3.3]));
 [0.6,1.4,2.2,3,3.8].forEach(dx=>p2nnR.push([RX+dx,3.3]));
 
@@ -473,24 +477,24 @@ const slideInfo=[
   {name:'Full Chapter',sub:'Before the Split',color:'#e8927c'},
   {name:'The Split',sub:'West & South → "West" · North & East → "East"',color:'#e8c97c'},
   {name:'Our Chapter: West',sub:'Focusing on Our 8 Neighborhoods',color:'#e8c97c'},
-  {name:'Flattening the Layers',sub:'Two VPs Become One Deputy',color:'#7cb8e8'},
+  {name:'Consolidation',sub:'Two VPs Become One Deputy',color:'#7cb8e8'},
   {name:'Empowering the NNC',sub:'Giving Voice to the NN Coordinator',color:'#7cb8e8'},
-  {name:'The NNC Forum',sub:'Coordinators Form Their Circle',color:'#7ce8b3'},
+  {name:'The NNC Meeting',sub:'Coordinators Form Their Circle',color:'#7ce8b3'},
   {name:'Departments Within Reach',sub:'Bridging the Gap to the Workforce',color:'#7ce8b3'},
   {name:'Secretary General',sub:'Coordinating Department Operations',color:'#7ce8b3'},
   {name:'Strategic Leadership',sub:'Vision, Strategy, Direction',color:'#7ce8b3'},
   {name:'Departments & Sec. General',sub:'The Work & Its Coordinator',color:'#7ce8b3'},
-  {name:'Deputy & NNC Forum',sub:'Overseeing the Workforce Together',color:'#7ce8b3'},
+  {name:'Deputy & NNC Meeting',sub:'Overseeing the Workforce Together',color:'#7ce8b3'},
   {name:'NeighborNets',sub:'Our Basic Organizing Unit',color:'#7ce8b3'},
   {name:'NN Members',sub:'The People on the Ground',color:'#7ce8b3'},
   {name:'The Complete Structure',sub:'Connected · Organized · Mission-Driven',color:'#7ce8b3'},
-  {name:'Scenario: Weekly NNC Forum',sub:'The Deputy Opens the Call',color:'#c8a2f0'},
+  {name:'Scenario: Weekly NNC Meeting',sub:'The Deputy Opens the Call',color:'#c8a2f0'},
   {name:'This Week\'s Topic',sub:'The Upcoming Fundraiser',color:'#c8a2f0'},
   {name:'Departments Join the Forum',sub:'Fundraising · Marketing · Oak Cliff',color:'#c8a2f0'},
   {name:'The Ask',sub:'Fundraising: Every NN Should Raise $10K',color:'#c8a2f0'},
   {name:'NNCs Respond',sub:'Owning the Outcomes',color:'#c8a2f0'},
   {name:'Marketing Needs Help',sub:'"We Need Help With Online Ads"',color:'#c8a2f0'},
-  {name:'NNC6 Has Talent',sub:'"I Have Just the Person"',color:'#c8a2f0'},
+  {name:'Oak Cliff NNC Has Talent',sub:'"I Have Just the Person"',color:'#c8a2f0'},
   {name:'Back to the Ground',sub:'NNCs Take It to Their People',color:'#c8a2f0'},
 ];
 
@@ -532,7 +536,7 @@ function setSlide(s){
 
   // ─── SLIDE 1: Full Chapter ───
   if(s===1){
-    tCamX=0;tCamY=3;tCamZ=28;
+    tCamX=0;tCamY=5.5;tCamZ=14;
     showNode(president,0,7.5);showNode(shura,-2.5,6.3);showNode(execTeam,2.5,6.3);
     showNode(vpW,-6.5,4.8);showNode(vpS,-2.2,4.8);showNode(vpN,2.2,4.8);showNode(vpE,6.5,4.8);
     nnOldPos.forEach((p,i)=>{showNode(nnNodes[i],p[0],p[1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;});
@@ -547,7 +551,7 @@ function setSlide(s){
 
   // ─── SLIDE 2: The Split ───
   if(s===2){
-    tCamX=0;tCamY=3;tCamZ=28;
+    tCamX=0;tCamY=5.5;tCamZ=16;
     const fade=0.2;
     showNode(president,LX,7.5);showNode(shura,LX-1.5,6.3);showNode(execTeam,LX+1.5,6.3);
     showNode(president_B,RX,7.5,fade);showNode(shura_B,RX-1.5,6.3,fade);showNode(execTeam_B,RX+1.5,6.3,fade);
@@ -583,14 +587,14 @@ function setSlide(s){
 
   // ─── SLIDE 4: Flatten — VPs merge into Deputy ───
   if(s===4){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,7);showNode(shura,-2,6);
     // VPs converge to Deputy position and fade
     showNode(vpW,0,4.8,0);showNode(vpS,0,4.8,0);
     // Deputy fades in at same spot
     showNode(deputy,0,4.8,0.9);
     // NNs in a line under deputy
-    const s4nn=[];for(let i=0;i<8;i++)s4nn.push([-3.5+i*1,3.3]);
+    const s4nn=[];for(let i=0;i<8;i++)s4nn.push([-5.25+i*1.5,3.3]);
     for(let i=0;i<8;i++){showNode(nnNodes[i],s4nn[i][0],s4nn[i][1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
       const mp=membersBelow(s4nn[i]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.7);memberConns[i][m].userData.targetOpacity=0.12;}}
     deptsR1.forEach((d,i)=>showNode(d,deptXs[i],deptY1,0.5));
@@ -600,7 +604,7 @@ function setSlide(s){
     presDeputyConn.userData.targetOpacity=0.22;
     presShuraConn.userData.targetOpacity=0.12;
     // Pre-position NNC dots at their NN positions (hidden) so they animate out in slide 5
-    const s4nn2=[];for(let i=0;i<8;i++)s4nn2.push([-3.5+i*1,3.3]);
+    const s4nn2=[];for(let i=0;i<8;i++)s4nn2.push([-5.25+i*1.5,3.3]);
     for(let i=0;i<8;i++){nncDots[i].userData.targetPos.set(s4nn2[i][0],s4nn2[i][1],0);nncDots[i].userData.targetScale=0;nncDots[i].userData.targetOpacity=0;}
     // Wall drops first — the lerp handles the timing naturally since VPs also need to travel
     // Wall is already hidden by hideAll(), VPs start moving from slide 3 positions
@@ -608,10 +612,10 @@ function setSlide(s){
 
   // ─── SLIDE 5: NNC pops out above each NN ───
   if(s===5){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,7);showNode(shura,-2,6);
     showNode(deputy,0,4.8);
-    const s5nn=[];for(let i=0;i<8;i++)s5nn.push([-3.5+i*1,3.3]);
+    const s5nn=[];for(let i=0;i<8;i++)s5nn.push([-5.25+i*1.5,3.3]);
     for(let i=0;i<8;i++){
       showNode(nnNodes[i],s5nn[i][0],s5nn[i][1]);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
       showDot(nncDots[i],s5nn[i][0],s5nn[i][1]+0.55,0.9);
@@ -626,16 +630,16 @@ function setSlide(s){
     presShuraConn.userData.targetOpacity=0.12;
   }
 
-  // ─── SLIDE 6: NNC Forum (flat) ───
+  // ─── SLIDE 6: NNC Meeting (flat) ───
   if(s===6){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,7);showNode(shura,-2,6);
     showNode(deputy,0,5.2); // above the forum, running it
 
     // NNCs in a horizontal line inside the rectangle
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       showDot(nncDots[i],nx,nncY,0.9);
       // NNs below the forum
       showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
@@ -644,7 +648,7 @@ function setSlide(s){
       const mp=membersBelow([nx,2.5]);for(let m=0;m<5;m++){showDot(memberDots[i][m],mp[m][0],mp[m][1],0.6);memberConns[i][m].userData.targetOpacity=0.1;}
     }
 
-    // NNC Forum rectangle
+    // NNC Meeting rectangle
     nncRect.userData.targetOpacity=0.06;
     nncBorder.userData.targetOpacity=0.4;
     nncFlatLabel.userData.targetOpacity=0.8;
@@ -659,7 +663,7 @@ function setSlide(s){
 
   // ─── SLIDE 7: Departments come down (flat) ───
   if(s===7){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,8.5);showNode(shura,3,8);
     showNode(deputy,0,5.4);
 
@@ -675,7 +679,7 @@ function setSlide(s){
     // NNCs in forum
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       showDot(nncDots[i],nx,nncY,0.9);
       showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
       nncNNConns[i].userData.targetOpacity=0.15;nncDepConns[i].userData.targetOpacity=0.12;
@@ -689,7 +693,7 @@ function setSlide(s){
 
   // ─── SLIDE 8: Secretary General joins at Deputy level ───
   if(s===8){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,9);showNode(shura,3,8.5);
 
     const deptOrder=[...deptsR1,...deptsR2];
@@ -703,7 +707,7 @@ function setSlide(s){
 
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       showDot(nncDots[i],nx,nncY,0.9);
       showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
       nncNNConns[i].userData.targetOpacity=0.15;
@@ -717,7 +721,7 @@ function setSlide(s){
 
   // ─── HELPER: Base flat layout with highlighting ───
   function baseSlide(highlight){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     const f=0.9, d=0.12;
 
     const h=highlight;
@@ -744,7 +748,7 @@ function setSlide(s){
 
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       showDot(nncDots[i],nx,nncY,nncOp);
       showNode(nnNodes[i],nx,2.5,nnOp);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
       nncNNConns[i].userData.targetOpacity=(h==='nnc'||h==='nn'||h==='deputy_nnc')?0.2:0.03;
@@ -771,7 +775,7 @@ function setSlide(s){
   if(s===9) baseSlide('leadership');
   // ─── SLIDE 10: Departments + Secretary General ───
   if(s===10) baseSlide('depts_secgen');
-  // ─── SLIDE 11: Deputy + NNC Forum ───
+  // ─── SLIDE 11: Deputy + NNC Meeting ───
   if(s===11) baseSlide('deputy_nnc');
   // ─── SLIDE 12: NeighborNets ───
   if(s===12) baseSlide('nn');
@@ -780,7 +784,7 @@ function setSlide(s){
 
   // ─── SLIDE 14: Complete Structure ───
   if(s===14){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,9);showNode(shura,3,8.5);
     const deptOrder=[...deptsR1,...deptsR2];
     for(let i=0;i<10;i++){showNode(deptOrder[i],-4.5+i*1,7.2);}
@@ -790,7 +794,7 @@ function setSlide(s){
     nncDepConns.forEach(c=>c.userData.targetOpacity=0.12);
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       showDot(nncDots[i],nx,nncY,0.9);
       showNode(nnNodes[i],nx,2.5);nnNodes[i].userData.label.material.map=nnTextures[i];nnNodes[i].userData.label.material.needsUpdate=true;
       nncNNConns[i].userData.targetOpacity=0.15;
@@ -801,7 +805,7 @@ function setSlide(s){
     presDeputyConn.userData.targetOpacity=0.22;presSecGenConn.userData.targetOpacity=0.18;presShuraConn.userData.targetOpacity=0.1;
   }
 
-  // ═══ SCENARIO SLIDES: NNC Forum Weekly Call ═══
+  // ═══ SCENARIO SLIDES: NNC Meeting Weekly Call ═══
   // Forum-focused layout helper
   function forumScene(opts){
     tCamX=0;tCamY=3.5;tCamZ=14; // zoomed into forum area
@@ -815,7 +819,7 @@ function setSlide(s){
     // NNCs in forum line
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       const nncHi=opts.hiNNC&&opts.hiNNC.includes(i);
       showDot(nncDots[i],nx,nncY,nncHi?1:0.7);
       showNode(nnNodes[i],nx,2.6,nncHi?0.9:0.35);
@@ -882,7 +886,7 @@ function setSlide(s){
 
   // ─── SLIDE 22: Back to the ground — NNCs discuss with their members ───
   if(s===22){
-    tCamX=0;tCamY=3;tCamZ=20;
+    tCamX=0;tCamY=4.5;tCamZ=16;
     showNode(president,0,9,0.5);showNode(shura,3,8.5,0.3);
     const deptOrder=[...deptsR1,...deptsR2];
     for(let i=0;i<10;i++){showNode(deptOrder[i],-4.5+i*1,7.2,0.25);}
@@ -894,7 +898,7 @@ function setSlide(s){
     const cascadeDelay=[1.5,1.5,0,1.5,1.5,0,0,1.5]; // key=0s, others=1.5s stagger
     const nncY=3.85;
     for(let i=0;i<8;i++){
-      const nx=-3.5+i*1;
+      const nx=-5.25+i*1.5;
       const isKey=keyNNCs.includes(i);
       // NNC dots: static, no bounce — ripple rings do the talking
       showDot(nncDots[i],nx,nncY,1);
@@ -1040,8 +1044,8 @@ function animate(){
     });
   });
 
-  // Downward radiant wave: bands sweep from NNC Forum down past members
-  const waveTop=4.2; // just above NNC Forum
+  // Downward radiant wave: bands sweep from NNC Meeting down past members
+  const waveTop=4.2; // just above NNC Meeting
   const waveBot=0.3; // past members
   const waveRange=waveTop-waveBot;
   const waveCycle=4.0; // seconds for full sweep
